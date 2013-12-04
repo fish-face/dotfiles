@@ -10,7 +10,7 @@ for name in *; do
       echo "WARNING: Not overwriting existing file $target which is not a symlink."
     fi
   else
-    if [ "$name" != 'install.sh' ] && [ "$name" != 'README.md' ] && ["$name" != 'LICENSE' ]; then
+    if [ "$name" != 'install.sh' ] && [ "$name" != 'README.md' ] && [ "$name" != 'LICENSE' ]; then
       echo "Creating $target"
       ln -s "$PWD/$name" "$target"
     fi
