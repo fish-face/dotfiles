@@ -1,0 +1,45 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% brisslide package, will automatically produce slides   %
+% corresponding to the corporate design standards on     %
+% http://www.bris.ac.uk/cms/pro/UoB_id_guidelines.pdf    %
+%                                                        %
+% Requires the files UoB_footer.png, UoB_header.png and  %
+% UoB_icon.png, and should be used with PDFlatex.        %
+%                                                        %
+% David Leslie, 23 Jan 2008                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\usepackage[dvips]{color}
+\usepackage{color,graphicx}
+\usepackage[paperwidth=7.5in,paperheight=10in,left=2cm,right=2cm,top=1cm,bottom=0cm]{geometry}
+\usepackage{calc,eso-pic}
+\usepackage{hyperref}
+\usepackage[coloremph,colorhighlight,display]{texpower}
+%\usepackage[colormath,coloremph,colorhighlight]{texpower}
+\usepackage[scaleupmath,scaleuptt]{tpslifonts}
+%\usepackage{fixseminar}
+\pagestyle{empty}
+\usepackage{amsmath,amsfonts,amssymb}
+
+\newcommand{\slideheader}{
+	\AddToShipoutPicture*{
+		\AtPageUpperLeft{\makebox(0,0)[lt]{\includegraphics[width=10in]{presentation_header}}}
+	}
+}
+
+\AddToShipoutPicture{
+	\AtPageLowerLeft{\includegraphics[width=10in]{presentation_footer}}
+}
+
+%\newcommand{\slideheader}{ %
+%	\setlength{\parskip}{0cm} %
+%	\setlength{\topskip}{0cm} %
+%	\setlength{\topmargin}{0cm} %
+%	\setlength{\voffset}{-1in} %
+%	\vspace*{-1cm}\hspace{-2cm}\includegraphics[width=10in]{presentation_header}
+%}
+
+\newcommand{\slidetitle}[1]{ %
+	\includegraphics[width=1.5cm]{presentation_icon} {\huge\bf\boldmath\textcolor{red}{#1}\par}
+}

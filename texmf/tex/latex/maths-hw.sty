@@ -1,0 +1,95 @@
+%LaTeX
+\usepackage{mystyle}
+\usepackage{maths-generic}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{ifthen}
+
+\title{Untitled}
+\date{Submitted: \today}
+
+\newcommand{\ifthen}[2]{\ifthenelse{#1}{#2}{}}
+
+\newboolean{inexercise}
+\newboolean{inquestion}
+\newboolean{inqpart}
+
+\setboolean{inexercise}{false}
+\setboolean{inquestion}{false}
+\setboolean{inqpart}{false}
+
+\newcommand{\exercise}[1]{%
+	\ifthenelse{\boolean{inquestion}} {
+		\end{enumerate}
+	} {\ifthen{\boolean{inqpart}} {
+		\end{enumerate}\end{enumerate}
+	}}
+	\setboolean{inexercise}{true}
+	\setboolean{inquestion}{false}
+	\setboolean{inqpart}{false}
+	\section*{Exercise #1.}
+}
+
+\newcommand{\question}[1]{%
+	\ifthenelse{\boolean{inqpart}} {
+		\end{enumerate}
+		
+	} {\ifthen{\boolean{inexercise}} {
+		\begin{enumerate}
+	}}
+	\setboolean{inexercise}{false}
+	\setboolean{inquestion}{true}
+	\setboolean{inqpart}{false}
+	\item[#1.] %
+}
+
+\newcommand{\qpart}[1]{%
+	\ifthen{\boolean{inquestion}} {
+		\begin{enumerate}
+	}
+	\setboolean{inexercise}{false}
+	\setboolean{inquestion}{false}
+	\setboolean{inqpart}{true}
+	\item[(#1)]
+}
+
+\newcommand{\nomore}{%
+	\ifthenelse{\boolean{inquestion}} {
+		\end{enumerate}
+	} {\ifthen{\boolean{inqpart}} {
+		\end{enumerate}\end{enumerate}
+	}}
+}
+
+%\newcommand{\exercise}[2]{
+%  \section*{Exercise #1.}
+%  \begin{enumerate}#2\end{enumerate}}
+
+%\makeatletter
+%\newcommand{\question}[1]{%
+%	\@ifnextchar[{\question@i{#1}}{\question@i{#1}[]}%]
+%}
+%\def\question@i#1[#2]#3{%
+%	\item[#1.] {
+%		#2 %\ifx\empty #1 \else {#1}\fi
+%		\begin{enumerate} #3 \end{enumerate}
+%	}
+%}
+%\makeatother
+
+%\newcommand{\question}[3][]{
+%  \item[#2.] {
+%  	\ifx \empty #1 \else {#1}\fi
+%  	\begin{enumerate} #3 \end{enumerate}
+%}}
+
+%\newcommand{\qnoparts}[2]{
+%  \item[#1.] #2 }
+
+%\newcommand{\qpart}[2]{
+%  \item[(#1)] #2}
+
+\newcommand{\newmacros}{
+  \renewcommand{\exercise}[1]{\section*{Exercise ##1.}}}

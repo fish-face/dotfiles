@@ -1,0 +1,152 @@
+%LaTeX
+
+\usepackage{xspace}
+\usepackage{ifthen}
+\usepackage{amssymb}
+
+%Put some explanation inside an eqnarray
+\newcommand{\comment}[1]
+  {\mbox{#1\qquad}}
+ 
+\newcommand{\rcomment}[1]
+	{\qquad\mbox{#1}}
+	
+%Put a line of text in an eqnarray
+%\newcommand{\itext}[1]
+%  { \multicolumn{3}{l}{ \mbox{#1} } }
+
+%Shorthand for writing equations
+%\newenvironment{eqns}
+  %{\begin{tabular}{ccccc}}{\end{tabular}}
+  %{\[\begin{array}{lll}}{\end{array}\]}
+  %{\begin{align}}{\end{align}}
+
+%Braces
+\newcommand{\braces}[1]
+  {\left\lbrace #1 \right\rbrace}
+
+%Shorthand for differentials
+\newcommand{\dd}
+  {\mathrm{d}}
+ 
+\newcommand{\deriv}[2]
+  {\frac{\dd{#1}}{\dd{#2}}}
+
+\newcommand{\pd}[2]
+  {\frac{\partial{#1}}{\partial{#2}}}
+  
+\newcommand{\Res}[2]
+  {\mathrm{Res}\left(#1,#2\right)}
+
+%Highest common factor
+\newcommand{\hcf}[2]
+  {\mathrm{hcf(#1,#2)}}
+
+%Contradiction
+\newcommand{\contra}{\textreferencemark}
+
+%End of Proof
+\newcommand{\qqed}{$\Box$}
+
+%Contradiction
+\newcommand{\con}{\ensuremath{\nleftrightarrow}\ }
+
+%Big-O
+\newcommand{\order}[1]{\ensuremath{\mathcal{O}\left(#1\right)}}
+
+%Order
+\newcommand{\ord}{\mathrm{ord}}
+
+%Range
+\newcommand{\Ran}{\mathrm{Ran}}
+
+%Image
+\newcommand{\Img}{\text{Im}}
+\newcommand{\img}[1][{}]{
+	\text{im}\ifthenelse{\equal{#1}{}}{}{\;#1}}
+\newcommand{\ran}{\text{ran}}
+\newcommand{\dom}{\ensuremath{\operatorname{dom}}}
+
+%Span, basis
+\newcommand{\mspan}[1]{\mathrm{span}\left\lbrace #1 \right\rbrace}
+\newcommand{\basis}{\mathrm{basis}}
+
+%Sign
+\newcommand{\sgn}[1]{\mathrm{sgn}\left( #1 \right)}
+
+%Kernel
+%\newcommand{\ker}{\mathrm{ker}\,}
+
+%List of things with dots
+\newcommand{\llist}[2]{#1,\ldots,#2}
+
+%``if'' for use in cases environment
+\newcommand{\eif}{\mathrm{if}\:}
+
+%lim n to infinity
+\newcommand{\limni}{\lim_{n\to\infty}}
+
+%%% Operators by name %%%
+
+\newcommand{\union}{\cup}
+\newcommand{\intersect}{\cap}
+\newcommand{\mand}{\wedge}
+\newcommand{\mor}{\vee}
+\newcommand{\Trans}{\operatorname{Trans}}
+\newcommand{\TC}{\operatorname{TC}}
+\newcommand{\tc}{\operatorname{tc}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\intr}{\operatorname{int}}
+\newcommand{\rk}{\operatorname{rk}}
+
+%%% Theories %%%
+\newcommand{\ZFC}{\ensuremath{\mathsf{ZFC}}\xspace}
+\newcommand{\ZF}{\ensuremath{\mathsf{ZF}}\xspace}
+\newcommand{\ZFm}{\ensuremath{\mathsf{ZF^-}}\xspace}
+\newcommand{\KP}{\ensuremath{\mathsf{KP}}\xspace}
+
+%%% Lazy Letters %%%
+
+%Integers
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+%Rationals
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}\xspace}
+%Reals
+\newcommand{\R}{\ensuremath{\mathbb{R}}\xspace}
+%Complex
+\newcommand{\C}{\ensuremath{\mathbb{C}}\xspace}
+%Naturals
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+%Borel space
+\newcommand{\B}{\ensuremath{\mathbb{B}}\xspace}
+%Sigma algebra
+\newcommand{\X}{\ensuremath{\mathbb{X}}\xspace}
+%Epsilon
+\newcommand{\eps}{\ensuremath{\varepsilon}\xspace}
+
+%Godel number
+\newbox\gnBoxA
+\newdimen\gnCornerHgt
+\setbox\gnBoxA=\hbox{$\ulcorner$}
+\global\gnCornerHgt=\ht\gnBoxA
+\newdimen\gnArgHgt
+
+\def\gn #1{%
+        \setbox\gnBoxA=\hbox{$#1$}%
+        \gnArgHgt=\ht\gnBoxA%
+        \ifnum \gnArgHgt<\gnCornerHgt
+                \gnArgHgt=0pt%
+        \else
+                \advance \gnArgHgt by -\gnCornerHgt%
+                \advance \gnArgHgt by 2pt%
+        \fi
+        \raise\gnArgHgt\hbox{$\ulcorner$} \!\box\gnBoxA\! %
+                \raise\gnArgHgt\hbox{$\urcorner$}}
+
+% -->>
+\newcommand{\tto}{\twoheadrightarrow}
+
+\newcommand{\on}[1]{%
+	\newcommand{\#1}{\ensuremath{\operatorname{#1}}}}
+
