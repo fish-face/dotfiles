@@ -1,20 +1,29 @@
+% ls-R -- filename database for kpathsea; do not change this line.
+./:
 .:
 ls-R
 tex
+
 
 ./tex:
 latex
 
 ./tex/latex:
+brisslides.sty
 math-hw.sty
-math-hw.sty~
 maths-generic.sty
-maths-generic.sty~
 maths-hw.sty
-maths-hw.sty~
 maths-project.sty
-maths-project.sty~
+maths-writeup.sty
 mystyle.sty
-mystyle.sty~
 placeins.sty
 placeins.txt
+project_header.xcf
+SlidesTemplate.aux
+SlidesTemplate.log
+SlidesTemplate.out
+SlidesTemplate.pdf
+SlidesTemplate.tex
+UoB_footer.png
+UoB_header.png
+UoB_icon.png
