@@ -1,0 +1,21 @@
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+  create-branch = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
+  delete-branch = !sh -c 'git push origin :refs/heads/$1 && git remote prune origin && git branch -D $1' -
+  merge-branch = !git checkout master && git merge @{-1}
+  pr = !hub pull-request
+  up = !git fetch origin && git rebase origin/master
+  aa = add --all
+  ap = add --patch
+
+[color]
+  ui = auto
+
+[include]
+  path = .gitconfig.local
