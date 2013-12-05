@@ -24,8 +24,8 @@ imap <buffer> <M-i> \item
 "\})
 
 function! MapTexMotions()
-	for l:mode in ['n', 'o', 'v']
-		for l:motion in ['w', 'e', 'b', 'ge']
+	for l:motion in ['w', 'e', 'b', 'ge']
+		for l:mode in ['n', 'o', 'v']
 			let l:cmd  = l:mode . 'noremap <buffer> <silent> '
 			let l:cmd .= l:motion . ' '
 			let l:cmd .= ':<C-U>call MoveTexWord("'
@@ -38,6 +38,7 @@ function! MapTexMotions()
 			let l:cmd .= '<CR>'
 			exe l:cmd
 		endfor
+		exe 'sunmap <buffer> <silent>' . l:motion
 	endfor
 
 	vmap <buffer> <silent> aw :<C-U>call MoveTexWord('bc', 'n', 1)<cr>vwh

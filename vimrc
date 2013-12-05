@@ -12,6 +12,8 @@ set wildmenu
 set wildignore=*.o,*.obj,*.py[co],*.swp,*.exe,*.bbl,*.aux,*.blg,*.fls
 set t_Co=256
 
+" GUI
+set guioptions=aegiL
 " Status line
 set laststatus=2
 
@@ -54,6 +56,9 @@ endif
 
 " Some settings for LaTeX-suite
 set shellslash
+
+" Don't let vim-space wreck select-mode
+let g:space_disable_select_mode = 1
 
 " Solarized
 let g:solarized_termcolors=16
