@@ -31,6 +31,7 @@ set laststatus=2
 " Formatting
 set backspace=eol,start,indent
 set wrap
+set lbr
 "set wrapmargin=2
 set formatoptions+=w
 set shiftwidth=4
