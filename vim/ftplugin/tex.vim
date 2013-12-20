@@ -5,6 +5,14 @@ vmap <buffer> <F7>		<Plug>LatexWrapSelection
 vmap <buffer> <S-F7>		<Plug>LatexEnvWrapSelection
 "imap <buffer> (( 		\eqref{
 
+map <buffer> <leader>ll :Rubber<cr>
+map <buffer> <leader>lk :RubberStop<cr>
+map <buffer> <leader>lg :RubberStatus<cr>
+map <buffer> <leader>lG :RubberStatusDetailed<cr>
+map <buffer> <leader>lL :RubberForce<cr>
+map <buffer> <leader>lc :RubberClean<cr>
+
+
 map <silent> <buffer> <C-J> :call LatexBox_JumpToNextBraces(0)<cr>
 map <silent> <buffer> <C-K> :call LatexBox_JumpToNextBraces(1)<cr>
 
@@ -12,6 +20,8 @@ imap <buffer> <C-s> <c-o>:w<cr>
 map <buffer> <M-p> gwap
 imap <buffer> <M-p> <c-o>gwap
 imap <buffer> <M-i> \item
+
+let g:vim_program = v:progname
 
 "call textobj#user#plugin('plugin', {
 "\	'tex-command' : {
@@ -131,5 +141,5 @@ set updatetime=500
 
 augroup COMPILE_ON_SAVE
 	au!
-	au BufWritePost *.tex Latexmk
+	au BufWritePost *.tex Rubber
 augroup END
