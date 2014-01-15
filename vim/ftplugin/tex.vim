@@ -51,7 +51,7 @@ function! MapTexMotions()
 		exe 'sunmap <buffer> <silent>' . l:motion
 	endfor
 
-	vmap <buffer> <silent> aw :<C-U>call MoveTexWord('bc', 'n', 1)<cr>vwh
+	vnoremap <buffer> <silent> aw :<C-U>call MoveTexWord('bc', 'n', 1)<cr>vv:call MoveTexWord('w', 'v', 1, 1)<cr><BS>
 	vmap <buffer> <silent> iw :<C-U>call MoveTexWord('bc', 'n', 1)<cr>ve
 	omap <buffer> <silent> aw :<C-U>normal vaw<cr>
 	omap <buffer> <silent> iw :<C-U>normal viw<cr>
@@ -86,17 +86,18 @@ function! MoveTexWord(motion, mode, count, ...)
 
 	let c = 0
 	while c < a:count
-		"let current = getline('.')[col('.')]
+		let current = line('.')
 		"call search('\v(\\@=|\W)+\zs\S{-1,}\ze(\\|\W|$)', flags)
-		if a:mode == 'o'
-			let searchstr = '\v((\\|\w)\w*|[^\n\\[:alnum:][:space:]]+)'
-		else
+		"if oneline
+		"	let searchstr = '\v((\\|\w)\w*|[^\\[:alnum:][:space:]]+|$)'
+		"else
 			let searchstr = '\v((\\|\w)\w*|[^\\[:alnum:][:space:]]+)'
-		endif
-		if oneline
-			call search(searchstr, flags, line('.'))
-		else
-			call search(searchstr, flags)
+		"endif
+
+		call search(searchstr, flags)
+		if oneline && line('.') != current
+			exe "normal! " . current . "G"
+			normal! $
 		endif
 		let c = c + 1
 	endwhile
