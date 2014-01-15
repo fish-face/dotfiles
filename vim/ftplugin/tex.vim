@@ -74,6 +74,11 @@ function! MoveTexWord(motion, mode, count, ...)
 	endif
 
 	let flags .= 'W'
+	if a:0 > 0
+		let oneline = a:1
+	else
+		let oneline = 0
+	endif
 
 	if a:mode == 'v'
 		normal! gv
@@ -88,12 +93,16 @@ function! MoveTexWord(motion, mode, count, ...)
 		else
 			let searchstr = '\v((\\|\w)\w*|[^\\[:alnum:][:space:]]+)'
 		endif
-		call search(searchstr, flags)
+		if oneline
+			call search(searchstr, flags, line('.'))
+		else
+			call search(searchstr, flags)
+		endif
 		let c = c + 1
 	endwhile
 
 	if a:mode == 'o' && motion == 'e'
-		normal! l
+		normal! 1 
 	endif
 endfunction
 
