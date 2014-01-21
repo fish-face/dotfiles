@@ -9,7 +9,7 @@ set scrolloff=3
 set showcmd
 set wildmode=list:longest
 set wildmenu
-set wildignore=*.o,*.obj,*.py[co],*.swp,*.exe,*.bbl,*.aux,*.blg,*.fls
+set wildignore=*.o,*.obj,*.py[co],*.swp,*.exe,*.bbl,*.aux,*.blg,*.fls,*.pdf,*.fdb_latexmk,*.bbl,*.gz
 set t_Co=256
 
 " GUI
@@ -61,10 +61,13 @@ set shellslash
 " Don't let vim-space wreck select-mode
 let g:space_disable_select_mode = 1
 
+" Enable folding in LaTeX before LaTeX-Box starts
+let g:LatexBox_Folding=1
+
 " Solarized
 let g:solarized_termcolors=16
 set bg=dark
-colo solarized
+colo ir_black
 
 " Mappings
 noremap <silent> k gk
@@ -105,6 +108,55 @@ augroup END
 augroup Reload-Vimrc
 	au!
 	autocmd BufWritePost $MYVIMRC source % | doautocmd ColorScheme .vimrc
+augroup END
+
+"augroup AutoDeleteSwapFiles
+"	au!
+"	autocmd SwapExists * call CheckSwapFile()
+"augroup END
+"function! CheckSwapFile()
+"	let v:swapchoice = ''
+"	let cmd = "diff -q /tmp/" . expand('%') . " " .expand('%')
+"	echo expand('%:p')
+"	echo v:swapname
+"	call delete("/tmp/" . v:swapname)
+"	save! /tmp/%
+"	let differs = system(cmd)
+"	if differs == 0
+"		echo "Deleted redundant swapfile"
+"		"let v:swapchoice = 'd'
+"	endif
+"endfunction
+
+function! s:HandleRecover()
+  echo system('diff - ' . shellescape(expand('%:p')), join(getline(1, '$'), "\n") . "\n")
+  if v:shell_error
+    call s:DiffOrig()
+  else
+    echohl WarningMsg
+    echomsg "No differences; deleting the old swap file."
+    echohl NONE
+    call delete(b:swapname)
+  endif
+endfunction
+
+function! s:DiffOrig()
+  vert new
+  set bt=nofile
+  r #
+  0d_
+  diffthis
+  wincmd p
+  diffthis
+endfunction
+
+augroup HandleRecover
+	au!
+	autocmd SwapExists  * let b:swapchoice = '?' | let b:swapname = v:swapname
+	autocmd BufReadPost * let b:swapchoice_likely = (&l:ro ? 'o' : 'r')
+	autocmd BufEnter    * let b:swapchoice_likely = (&l:ro ? 'o' : 'e')
+	autocmd BufWinEnter * if exists('b:swapchoice') && exists('b:swapchoice_likely') | let b:swapchoice = b:swapchoice_likely | unlet b:swapchoice_likely | endif
+	autocmd BufWinEnter * if exists('b:swapchoice') && b:swapchoice == 'r' | call s:HandleRecover() | endif
 augroup END
 
 function! TexCompiling(filename)

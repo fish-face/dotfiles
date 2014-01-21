@@ -109,7 +109,6 @@ endfunction
 
 let g:LatexBox_viewer='okular'
 let g:LatexBox_quickfix=0
-let g:LatexBox_Folding=1
 let g:LatexBox_latexmk_async=1
 "let g:LatexBox_latexmk_preview_continuously=1
 let g:LatexBox_fold_envs=0
