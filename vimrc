@@ -40,13 +40,22 @@ set copyindent
 
 " Behaviour
 set autochdir
+set autoread
 set ignorecase
 set smartcase
 set incsearch
 set nohlsearch
-set magic
+set nomagic
 set hidden
 set switchbuf=usetab,newtab
+
+augroup line_return
+	au!
+	au BufReadPost *
+				\ if line("'\"") > 0 && line("'\"") <= line("$") |
+				\     execute 'normal! g`"zvzz' |
+				\ endif
+augroup END
 
 " Powerline is special
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
@@ -91,7 +100,18 @@ nmap [q :cp<cr>zv
 nmap <C-p> gwap
 imap <C-p> <Esc>gwapgi
 
+" Toggleable options
 nmap <F9> :set invhlsearch<cr>
+nmap <F10> :set invpaste<cr>
+
+" Annoying keys
+nmap K <nop>
+
+" Window navigation
+noremap <C-h>  <C-w>h
+noremap <C-j>  <C-w>j
+noremap <C-k>  <C-w>k
+noremap <C-l>  <C-w>l
 
 nmap <cr> za
 
