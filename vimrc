@@ -1,44 +1,40 @@
 " Use filetypes
 filetype plugin indent on
 
-" Display
+" Display {{{
 syn on
 
 set number
 set scrolloff=3
 set showcmd
+set t_Co=256
+" }}}
+
+" WildMenu {{{
 set wildmode=list:longest
 set wildmenu
-set wildignore=*.o,*.obj,*.py[co],*.swp,*.exe,*.bbl,*.aux,*.blg,*.fls,*.pdf,*.fdb_latexmk,*.bbl,*.gz
-set t_Co=256
+set wildignore+=*.o,*.obj,*.exe,*.dll
+set wildignore+=*.py[co]
+set wildignore+=*.swp,
+set wildignore+=*.bbl,*.aux,*.blg,*.fls,*.pdf,*.fdb_latexmk,*.bbl,*.gz,*.out,*.toc
+" }}}
 
 " GUI
 set guioptions=aegiL
 " Status line
 set laststatus=2
 
-"set statusline=
-"set statusline+=%<%.30{getcwd()}\ %f%m "working directory, filename, modified flag
-"set statusline+=\ [%{&ff}
-"set statusline+=:%{(&fenc==\"\"?&enc:&fenc)}
-"set statusline+=:%Y]
-"set statusline+=%{(!exists('b:remotestatus')?'':('\ ['.b:remotestatus.']'))}
-"set statusline+=\ %=
-"set statusline+=\ %{v:register}
-"set statusline+=\ %l\/%L
-"set statusline+=\ %c%V\  
-
-" Formatting
+" Formatting {{{
 set backspace=eol,start,indent
 set wrap
 set lbr
-"set wrapmargin=2
 set formatoptions+=w
 set shiftwidth=4
 set tabstop=4
 set copyindent
+" }}}
 
-" Behaviour
+" Behaviour {{{
 set autochdir
 set autoread
 set ignorecase
@@ -49,6 +45,7 @@ set nomagic
 set hidden
 set switchbuf=usetab,newtab
 
+" Remember position in file
 augroup line_return
 	au!
 	au BufReadPost *
@@ -56,13 +53,11 @@ augroup line_return
 				\     execute 'normal! g`"zvzz' |
 				\ endif
 augroup END
+" }}}
 
+" Plugins {{{
 " Powerline is special
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-
-if filereadable(expand("~/.vimrc.bundles"))
-	source ~/.vimrc.bundles
-endif
 
 " Some settings for LaTeX-suite
 set shellslash
@@ -77,8 +72,13 @@ let g:LatexBox_Folding=1
 let g:solarized_termcolors=16
 set bg=dark
 colo ir_black
+if filereadable(expand("~/.vimrc.bundles"))
+	source ~/.vimrc.bundles
+endif
+" }}}
 
-" Mappings
+" Mappings {{{
+" Navigation
 noremap <silent> k gk
 noremap <silent> j gj
 noremap <silent> ^ g^
@@ -88,10 +88,11 @@ inoremap <silent> <Down> <C-o>gj
 inoremap <silent> <Home> <C-o>g^
 inoremap <silent> <End> <C-o>g$
 
-nnoremap Y y$
+" Laze
+nnoremap ; :
 
-nnoremap _ <C-w>-
-nnoremap + <C-w>+
+" Sane yank
+nnoremap Y y$
 
 nnoremap L :tabn<cr>
 nnoremap H :tabp<cr>
@@ -112,10 +113,14 @@ noremap <C-h>  <C-w>h
 noremap <C-j>  <C-w>j
 noremap <C-k>  <C-w>k
 noremap <C-l>  <C-w>l
+nnoremap <C-c> <C-w>c
+nnoremap _ <C-w>-
+nnoremap + <C-w>+
 
-nmap <cr> za
+nmap <cr> zazz
 
 map <c-n> :NERDTreeToggle<cr>
+" }}}
 
 " Prevent the cursor moving when clicking the window to focus it.
 augroup NO_CURSOR_MOVE_ON_FOCUS
@@ -130,24 +135,7 @@ augroup Reload-Vimrc
 	autocmd BufWritePost $MYVIMRC source % | doautocmd ColorScheme .vimrc
 augroup END
 
-"augroup AutoDeleteSwapFiles
-"	au!
-"	autocmd SwapExists * call CheckSwapFile()
-"augroup END
-"function! CheckSwapFile()
-"	let v:swapchoice = ''
-"	let cmd = "diff -q /tmp/" . expand('%') . " " .expand('%')
-"	echo expand('%:p')
-"	echo v:swapname
-"	call delete("/tmp/" . v:swapname)
-"	save! /tmp/%
-"	let differs = system(cmd)
-"	if differs == 0
-"		echo "Deleted redundant swapfile"
-"		"let v:swapchoice = 'd'
-"	endif
-"endfunction
-
+" Handle existence of swap files semi-sanely {{{
 function! s:HandleRecover()
   echo system('diff - ' . shellescape(expand('%:p')), join(getline(1, '$'), "\n") . "\n")
   if v:shell_error
@@ -178,29 +166,16 @@ augroup HandleRecover
 	autocmd BufWinEnter * if exists('b:swapchoice') && exists('b:swapchoice_likely') | let b:swapchoice = b:swapchoice_likely | unlet b:swapchoice_likely | endif
 	autocmd BufWinEnter * if exists('b:swapchoice') && b:swapchoice == 'r' | call s:HandleRecover() | endif
 augroup END
+" }}}
 
-function! TexCompiling(filename)
-	let curbuf = bufnr("%")
-	execute ":b " . a:filename
-	let b:remotestatus = 'Compiling'
-	redrawstatus
-	execute ":b " . curbuf
-endfunction
+" Filetypes {{{
+" Vim {{{
+augroup ft_vim
+	au!
+	au FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
 
-function! TexSuccess(filename)
-	let curbuf = bufnr("%")
-	execute ":b " . a:filename
-	let b:remotestatus = 'Success'
-	redrawstatus
-	execute ":b " . curbuf
-endfunction
-
-function! TexFailure(filename)
-	let curbuf = bufnr("%")
-	execute ":b " . a:filename
-	let b:remotestatus = 'Errors'
-	"call UpdateErrors()
-	redrawstatus
-	execute ":b " . curbuf
-endfunction
-
+" LaTeX
+let g:tex_flavor = "latex"
+" }}}
