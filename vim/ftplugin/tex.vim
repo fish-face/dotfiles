@@ -12,9 +12,8 @@ map <buffer> <leader>lG :RubberStatusDetailed<cr>
 map <buffer> <leader>lL :RubberForce<cr>
 map <buffer> <leader>lc :RubberClean<cr>
 
-
-map <silent> <buffer> <C-J> :call LatexBox_JumpToNextBraces(0)<cr>
-map <silent> <buffer> <C-K> :call LatexBox_JumpToNextBraces(1)<cr>
+"map <silent> <buffer> <C-J> :call LatexBox_JumpToNextBraces(0)<cr>
+"map <silent> <buffer> <C-K> :call LatexBox_JumpToNextBraces(1)<cr>
 
 imap <buffer> <C-s> <c-o>:w<cr>
 map <buffer> <M-p> gwap
