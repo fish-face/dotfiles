@@ -15,7 +15,7 @@ set wildmode=list:longest
 set wildmenu
 set wildignore+=*.o,*.obj,*.exe,*.dll
 set wildignore+=*.py[co]
-set wildignore+=*.swp,
+set wildignore+=*.swp
 set wildignore+=*.bbl,*.aux,*.blg,*.fls,*.pdf,*.fdb_latexmk,*.bbl,*.gz,*.out,*.toc
 " }}}
 
@@ -39,11 +39,12 @@ set autochdir
 set autoread
 set ignorecase
 set smartcase
+set gdefault
 set incsearch
 set nohlsearch
-set nomagic
 set hidden
 set switchbuf=usetab,newtab
+set spell
 
 " Remember position in file
 augroup line_return
@@ -117,7 +118,7 @@ nnoremap <C-c> <C-w>c
 nnoremap _ <C-w>-
 nnoremap + <C-w>+
 
-nmap <cr> zazz
+nmap <cr> za
 
 map <c-n> :NERDTreeToggle<cr>
 " }}}

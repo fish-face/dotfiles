@@ -5,12 +5,12 @@ vmap <buffer> <F7>		<Plug>LatexWrapSelection
 vmap <buffer> <S-F7>		<Plug>LatexEnvWrapSelection
 "imap <buffer> (( 		\eqref{
 
-map <buffer> <leader>ll :Rubber<cr>
-map <buffer> <leader>lk :RubberStop<cr>
-map <buffer> <leader>lg :RubberStatus<cr>
-map <buffer> <leader>lG :RubberStatusDetailed<cr>
-map <buffer> <leader>lL :RubberForce<cr>
-map <buffer> <leader>lc :RubberClean<cr>
+"map <buffer> <leader>ll :Rubber<cr>
+"map <buffer> <leader>lk :RubberStop<cr>
+"map <buffer> <leader>lg :RubberStatus<cr>
+"map <buffer> <leader>lG :RubberStatusDetailed<cr>
+"map <buffer> <leader>lL :RubberForce<cr>
+"map <buffer> <leader>lc :RubberClean<cr>
 
 "map <silent> <buffer> <C-J> :call LatexBox_JumpToNextBraces(0)<cr>
 "map <silent> <buffer> <C-K> :call LatexBox_JumpToNextBraces(1)<cr>
@@ -22,15 +22,8 @@ imap <buffer> <M-i> \item
 
 let g:vim_program = v:progname
 
-"call textobj#user#plugin('plugin', {
-"\	'tex-command' : {
-"\		'pattern' : ['\w', '\w'],
-"\		'move-n' : 'w',
-"\		'move-p' : 'b',
-"\		'move-N' : 'e',
-"\		'select-i' : 'iw',
-"\	}
-"\})
+set spell
+set nobackup
 
 function! MapTexMotions()
 	for l:motion in ['w', 'e', 'b', 'ge']
@@ -149,5 +142,5 @@ set updatetime=500
 
 augroup COMPILE_ON_SAVE
 	au!
-	au BufWritePost *.tex Rubber
+	au BufWritePost *.tex Latexmk
 augroup END
