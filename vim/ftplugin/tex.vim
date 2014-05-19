@@ -102,7 +102,7 @@ endfunction
 let g:LatexBox_viewer='okular'
 let g:LatexBox_quickfix=0
 let g:LatexBox_latexmk_async=1
-"let g:LatexBox_latexmk_preview_continuously=1
+let g:LatexBox_latexmk_preview_continuously=1
 let g:LatexBox_fold_envs=0
 "set makeprg=rubber-info\ %:t:r.log
 "set errorformat=%f:%l:\ %m
@@ -140,7 +140,7 @@ augroup AUTOSAVE_ON_IDLE
 augroup END
 set updatetime=500
 
-augroup COMPILE_ON_SAVE
-	au!
-	au BufWritePost *.tex Latexmk
-augroup END
+"augroup COMPILE_ON_SAVE
+"	au!
+"	au BufWritePost *.tex Latexmk
+"augroup END
