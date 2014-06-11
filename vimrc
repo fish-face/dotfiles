@@ -109,6 +109,9 @@ nmap <F10> :set invpaste<cr>
 " Annoying keys
 nmap K <nop>
 
+" Fix broken highlighting
+noremap <F12> :syntax sync fromstart<cr>
+
 " Window navigation
 noremap <C-h>  <C-w>h
 noremap <C-j>  <C-w>j

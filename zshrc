@@ -110,6 +110,12 @@ bindkey "^[^[[3~" _forward-delete-to-/
 bindkey "[1;5D" _backward-to-/
 bindkey "[1;5C" _forward-to-/
 
+bindkey "^U" undo
+
+autoload -Uz copy-earlier-word
+zle -N copy-earlier-word
+bindkey "^[m" copy-earlier-word
+
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
 SAVEHIST=1000

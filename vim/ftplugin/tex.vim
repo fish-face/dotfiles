@@ -112,6 +112,7 @@ function! Errors()
 	if exists("g:quickfix_is_open")
 		cclose
 	else
+		cfile %:t:r.log
 		let orig_win = winnr()
 		cwindow
 		exe orig_win . " :wincmd w"
@@ -126,10 +127,12 @@ augroup END
 
 map <buffer> <F2> :call Errors()<cr>
 
-function! SyncTexForward()
+function! SyncTexForward(...)
 	let execstr = "silent !okular --unique ".LatexBox_GetOutputFile().'\#' . "src:".line(".").expand("%:p:h")."/./".expand("%:t")." &> /dev/null &"
 	exec execstr
-	"echo execstr
+	if a:0 > 0
+		echo execstr
+	endif
 endfunction
 
 nmap <Leader>f :call SyncTexForward()<cr>
