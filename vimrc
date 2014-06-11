@@ -76,6 +76,15 @@ colo ir_black
 if filereadable(expand("~/.vimrc.bundles"))
 	source ~/.vimrc.bundles
 endif
+
+" Pymode
+let g:pymode_lint_ignore = "E501"
+let g:pymode_options = 0
+let g:pymode_lint_cwindow = 0
+let g:pymode_rope_lookup_project = 0
+let g:pymode_rope_complete_on_dot = 0
+"let g:pymode_indent = 0
+
 " }}}
 
 " Mappings {{{
