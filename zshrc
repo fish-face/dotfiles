@@ -6,6 +6,11 @@ prompt adam1
 
 setopt histignorealldups sharehistory
 
+# Custom path
+if [ -d "$home/bin" ] ; then
+    export PATH="$HOME/bin:$PATH"
+fi
+
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
