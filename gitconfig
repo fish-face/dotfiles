@@ -20,3 +20,6 @@
 
 [include]
 	path = .gitconfig.local
+[user]
+	email = c.m.lesueur@gmail.com
+	name = Chris Le Sueur
