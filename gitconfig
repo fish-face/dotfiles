@@ -23,3 +23,8 @@
 [user]
 	email = c.m.lesueur@gmail.com
 	name = Chris Le Sueur
+
+[core]
+	excludesfile = ~/.gitignore
+[push]
+	default = simple
