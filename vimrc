@@ -70,10 +70,11 @@ let g:space_disable_select_mode = 1
 " Enable folding in LaTeX before LaTeX-Box starts
 let g:LatexBox_Folding=1
 
-" Solarized
+" Colors
 let g:solarized_termcolors=16
 set bg=dark
-colo ir_black
+colo BusyBee
+
 if filereadable(expand("~/.vimrc.bundles"))
 	source ~/.vimrc.bundles
 endif
@@ -121,6 +122,9 @@ nmap K <nop>
 
 " Fix broken highlighting
 noremap <F12> :syntax sync fromstart<cr>
+map <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+			\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+			\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") .  ">"<CR>
 
 " Window navigation
 noremap <C-h>  <C-w>h
