@@ -5,13 +5,16 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+let g:airline_powerline_fonts = 1
+
 " Set up vundle Bundles
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
 "Bundle 'ervandew/supertab'
-Bundle 'Lokaltog/powerline'
+"Bundle 'Lokaltog/powerline'
+Bundle 'bling/vim-airline'
 Bundle 'spiiph/vim-space'
 "Bundle 'coot/atp_vim'
 Bundle 'altercation/vim-colors-solarized'
