@@ -161,8 +161,10 @@ syn keyword pythonOperator      and in is not or
 syn match pythonStatement   "\<yield\>" display
 syn match pythonImport      "\<from\>" display
 
-syn region pythonFunctionFold start="^\z(\s*\)\%(def\|class\)\>"
-       \ end="\s*\n\%(\s*\n\)\?\ze\%(\s*\n\)*\%(\z1\s\)\@!." fold transparent"
+syntax region  pythonFunctionFold
+        \ start="^\%(@.*\n\1\)\@<!\(\z(\s*\)\)\%(@.*\n\1\)*\z(\%(def\|class\)\s\+.\{-}$\)"
+        \ skip="^\%(\z1\%(@.\{-}\n\z1\)*\z2\|\s*\n\|\s*#\)"
+        \ end="^\ze\%(\%(\z1\s\+\)\@!\|\%$\)" fold transparent 
 
 if s:Python2Syntax()
   if !s:Enabled("g:python_print_as_function")
