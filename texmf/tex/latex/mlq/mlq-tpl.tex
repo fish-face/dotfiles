@@ -1,0 +1,726 @@
+%% This is file `mlq-tpl.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% template.dtx  (with options: `mlq')
+%% 
+%% $Id: template.dtx,v 1.80 2005/10/04 16:26:14 uwe Exp $
+%% 2012-11-19 -MWL- aktualisiert
+%% ====================================================================
+\documentclass[mlq,a4paper,fleqn%
+% ,finallayout% this activates the final column title entries
+% ,earlyview% this adds the Early View tag on top of the title page
+]{w-art}
+\usepackage{times,cite,w-thm}
+% \usepackage{w-sidecapt}
+%% By default the equations are consecutively numbered. This may be changed by
+%% the following command.
+%% \numberwithin{equation}{section}
+%%
+%% The definition of new theorem like environments.
+%% Criterion
+\theoremstyle{plain}
+\newtheorem{criterion}{Criterion}
+%% Condition
+\theoremstyle{definition}
+\newtheorem{condition}[theorem]{Condition}
+%%
+%% The usage of multiple languages is possible.
+%% \usepackage{ngerman}% or
+%% \usepackage[english,ngerman]{babel}
+%% \usepackage[english,french]{babel}
+\usepackage[]{graphicx}
+%% 
+\begin{document}
+%%    The information for the title page will be placed between
+%%    \begin{document} and \maketitle. The order of most entries
+%%    is determined by the class file and can not be changed by
+%%    rearranging them. The maketitle command follows after the
+%%    abstract.
+%%
+%%    Most of the following commands will be completed by the publisher.
+%%
+%%    The copyrightyear is defined in the .clo file as the first argument
+%%    of the copyrightinfo command. If the copyrightyear differs from that
+%%    value it might be adjusted by the following definition:
+%%
+%% \renewcommand{\copyrightyear}{2007}% uncomment to change the copyrightyear.
+%%
+\DOIsuffix{theDOIsuffix}
+%%
+%% issueinfo for the header line
+\Volume{53}
+\Issue{0}
+\Month{01}
+\Year{2007}
+%%
+%%    First and last pagenumber of the article. If the option
+%%    'autolastpage' is set (default) the second argument may be left empty.
+\pagespan{1}{}
+%%
+%%    Dates will be filled in by the publisher. The 'reviseddate' and
+%%    'dateposted' (Published online) entry may be left empty.
+\Receiveddate{XXXX}
+\Reviseddate{XXXX}
+\Accepteddate{XXXX}
+\Dateposted{XXXX}
+%%
+\keywords{List, of, comma, separated, keywords}
+\subjclass[msc2010]{00-xx}
+
+%% \pretitle{Editor's Choice}
+
+%% We have a short and a long form for the title. The short form
+%% (optional argument) goes into the running head.
+
+\title[Short title]{Long title}
+
+%% Please do not enter footnotes or \inst{}-notes into the optional
+%% argument of the author command. The optional argument will go into
+%% the header.  If there is only one address the marker \inst{x} may be
+%% omitted.
+
+%% Information for the first author.
+\author[F. Author]{First Author\inst{1,}%
+  \footnote{Corresponding author\quad E-mail:~\textsf{x.y@xxx.yyy.zz},
+            Phone: +00\,999\,999\,999,
+            Fax: +00\,999\,999\,999}}
+\address[\inst{1}]{First address}
+%%
+%%    Information for the second author
+\author[S. Author]{Second Author\inst{1,2,}\footnote{Second author footnote.}}
+\address[\inst{2}]{Second address}
+%%
+%%    Information for the third author
+\author[T. Author]{Third Author\inst{2,}\footnote{Third author footnote.}}
+%%
+%%    \dedicatory{This is a dedicatory.}
+\begin{abstract}
+  This is an example input file.  Comparing it with the output it generates
+  can show you how to produce a simple document of your own.
+\end{abstract}
+%% maketitle must follow the abstract.
+\maketitle                   % Produces the title.
+
+%% If there is not enough space inside the running head
+%% for all authors including the title you may provide
+%% the leftmark in one of the following three forms:
+
+%% \renewcommand{\leftmark}
+%% {First Author: A Short Title}
+
+%% \renewcommand{\leftmark}
+%% {First Author and Second Author: A Short Title}
+
+%% \renewcommand{\leftmark}
+%% {First Author et al.: A Short Title}
+
+%% \tableofcontents  % Produces the table of contents.
+\section{Introduction}
+
+The class file \texttt{w-art.cls} represents an adaptation of the
+\LaTeXe-standard class file \texttt{article.cls} and the \AmS{} class file
+\texttt{amsart.cls} with the size option \texttt{10pt} to the specific
+requirements of journal production at WILEY-VCH Verlag GmbH \& Co. KGaA,
+Weinheim. It can be used through the \LaTeX-command
+\begin{center}
+    \verb+\documentclass[<abbr>, fleqn, other options]{w-art}+
+\end{center}
+where $<$abbr$>$ is an abbreviation of the journal name.
+
+\begin{table}[h]
+  \caption{Abbreviations for journal names.}
+  \begin{tabular}{@{}lll@{}} \hline
+    adp   & Ann. Phys. (Berlin)                  & Annalen der Physik \\
+    cpp   & Contrib. Plasma Phys.                & Contributions to Plasma Physics \\
+    gamm  & GAMM-Mitt.                           & GAMM-Mitteilungen \\
+    mn    & Math. Nachr.                         & Mathematische Nachrichten \\
+    mlq   & Math. Log. Quart.                    & Mathematical Logic Quarterly \\
+    pamm  & PAMM $\cdot$ Proc. Appl. Math. Mech. & Proceedings in Applied Mathematics and Mechanics \\
+    fdp   & Fortschr. Phys.                      & Fortschritte der Physik \\
+    zamm  & ZAMM $\cdot$ Z. Angew. Math. Mech.   & Zeitschrift f\"{u}r Angewandte
+                                                   Mathematik und Mechanik \\ 
+\hline
+\end{tabular}
+  \label{tab:abbr}
+\end{table}
+
+  One difference to the standard layout is the indentation by \mbox{3\,cc} or
+  \mbox{4\,cc} of floats (figures and tables) and mathematical environments
+  (\verb+\[+\ldots\verb+\]+, \texttt{equation}, \ldots). To achieve this effect
+  the new floats \texttt{vchtable} and \texttt{vchfigure} were added which are to be
+  used in combination with \verb+\vchcaption+. The standard \texttt{table},
+  \texttt{figure}, and \verb+\caption+ commands are nevertheless still working. So
+  if there is the need to place a table or figure over the full width of the
+  page these floats may still be used. In order to get short captions flushed
+  left in contrast to the standard centered form the class loads internally the
+  \texttt{caption2.sty} package by Harald Axel Sommerfeldt with the options
+  \texttt{nooneline, small, bf}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Required packages}
+\label{required}
+This class requires the standard \LaTeX\ packages \texttt{calc}, \texttt{color},
+\texttt{sidecap}, and \texttt{caption2} and the \AmS-\LaTeX{}
+packages.\footnote{If these packages are not part of your installation you may
+  download them from the nearest CTAN server.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{New documentclass options}
+
+\begin{description}
+
+\item[referee] Prints the document with a larger amount of interline
+  whitespace.
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Floating objects -- figures and tables}
+
+We have two different table environments: {\tt table} and {\tt vchtable}.  The
+same holds true for figure: {\tt figure} and {\tt vchfigure}. The vch-types
+including their captions (\verb+\vchcaption+) are typically leftindented by an amount
+equal to the indentation of mathematical formulas.
+
+For the caption layout the \texttt{caption2.sty} package is preloaded.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Tables}
+
+The \LaTeX{} code for Table \ref{tab:2} is
+\begin{verbatim}
+\begin{table}
+\caption{The caption inside a table environment.}
+\label{tab:2}
+\begin{tabular}{@{}lll@{}}
+\hline
+Description 1 & Description 2 & Description \\
+\hline
+Row 1, Col 1 & Row 1, Col 2 & Row 1, Col 3 \\
+Row 2, Col 1 & Row 2, Col 2 & Row 2, Col 3 \\
+\hline
+\end{tabular}
+\end{table}
+\end{verbatim}
+Please note the \verb+@{}+ entries at the begin and end of each \texttt{tabular}
+column definition. These are used to remove the standard white space before the
+first column and after the last column of the table. Thus, the material inside
+the \texttt{tabular} environment will properly align at each side.
+
+\begin{table}
+\caption{The caption inside a table environment.}
+\label{tab:2}
+\begin{tabular}{@{}lll@{}}
+\hline
+Description 1 & Description 2 & Description \\
+\hline
+Row 1, Col 1 & Row 1, Col 2 & Row 1, Col 3 \\
+Row 2, Col 1 & Row 2, Col 2 & Row 2, Col 3 \\
+\hline
+\end{tabular}
+\end{table}
+
+% \clearpage%%%%%%%%%%%%%%%%
+
+The \LaTeX{} code for Table \ref{tab:3} (a vchtable) is
+\begin{verbatim}
+\begin{vchtable}
+\vchcaption{The caption inside a vchtable environment.}
+\label{tab:3}
+\begin{tabular}{@{}lll@{}}
+\hline
+Description 1 & Description 2 & Description \\
+\hline
+Row 1, Col 1 & Row 1, Col 2 & Row 1, Col 3 \\
+Row 2, Col 1 & Row 2, Col 2 & Row 2, Col 3 \\
+\hline
+\end{tabular}
+\end{vchtable}
+\end{verbatim}
+
+\begin{vchtable}
+\vchcaption{The caption inside a vchtable environment.}
+\label{tab:3}
+\begin{tabular}{@{}lll@{}}
+\hline
+Description 1 & Description 2 & Description \\
+\hline
+Row 1, Col 1 & Row 1, Col 2 & Row 1, Col 3 \\
+Row 2, Col 1 & Row 2, Col 2 & Row 2, Col 3 \\
+\hline
+\end{tabular}
+\end{vchtable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Figures}
+
+The \LaTeX{} code for Fig. \ref{fig:1} is
+\begin{verbatim}
+\begin{figure}[b]
+\includegraphics[width=\linewidth, height=2cm]{empty}
+\caption{The usual figure environment. It ...}
+\label{fig:1}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}[b]
+\includegraphics[width=.5\textwidth,height=25mm]{empty}
+\vchcaption{A vchfigure  environment with a vchcaption.
+Figure and caption are leftindented.}
+\label{fig:2}
+\end{vchfigure}
+
+The \LaTeX{} code for Fig. \ref{fig:2} (a vchfigure) is
+\begin{verbatim}
+\begin{vchfigure}[b]
+  \includegraphics[width=.5\textwidth,height=25mm]{empty}
+\vchcaption{A vchfigure  environment with a vchcaption.
+Figure and caption are leftindented.}
+\label{fig:2}
+\end{vchfigure}
+\end{verbatim}
+
+The \LaTeX{} code for Figs. \ref{fig:3} and \ref{fig:4} is
+\begin{verbatim}
+\begin{figure}
+\begin{minipage}{72mm}
+\includegraphics[width=\linewidth,height=25mm]{empty}
+\caption{Two figures side by side with different numbers.}
+\label{fig:3}
+\end{minipage}
+\hfil
+\begin{minipage}{65mm}
+\includegraphics[width=\linewidth,height=25mm]{empty}
+\caption{This is the second picture.}
+\label{fig:4}
+\end{minipage}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+\begin{minipage}{72mm}
+\includegraphics[width=\linewidth,height=25mm]{empty}
+\caption{Two figures side by side with different numbers.}
+\label{fig:3}
+\end{minipage}
+\hfil
+\begin{minipage}{65mm}
+\includegraphics[width=\linewidth,height=25mm]{empty}
+\caption{This is the second picture.}
+\label{fig:4}
+\end{minipage}
+\end{figure}
+
+The \LaTeX{} code for Figs. \ref{fig:5}a and b is
+\begin{verbatim}
+\begin{figure}
+\includegraphics[width=68mm,height=25mm]{empty}~a)
+\hfil
+\includegraphics[width=68mm,height=25mm]{empty}~b)
+\caption{Two figures with one number. The figures
+are referred to as \textbf{a} and \textbf{b}.}
+\label{fig:5}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+\includegraphics[width=68mm,height=25mm]{empty}~a)
+\hfil
+\includegraphics[width=68mm,height=25mm]{empty}~b)
+\caption{Two figures with one number. The figures are referred to as \textbf{a}
+and \textbf{b}.}
+\label{fig:5}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In order to print a figure and a table side by side the
+\verb+\setfloattype+ command is introduced. The \LaTeX{} code for
+Fig. \ref{fig:8} and Table \ref{tab:4} is
+\begin{verbatim}
+\begin{figure}
+\begin{minipage}{75mm}
+\includegraphics[width=\linewidth,height=35mm]{empty}
+\caption{Figure and table side by side. This is the picture.}
+\label{fig:8}
+\end{minipage}
+\hfil
+\begin{minipage}{65mm}
+\setfloattype{table}
+\caption{This is the table. ... .}
+\label{tab:4}
+\begin{tabular}{@{}lll@{}}
+...
+\end{tabular}
+\end{minipage}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+\begin{minipage}{75mm}
+\includegraphics[width=\linewidth,height=35mm]{empty}
+\caption{Figure and table side by side. This is the picture.}
+\label{fig:8}
+\end{minipage}
+\hfil
+\begin{minipage}{65mm}
+\setfloattype{table}
+\caption{This is the table. Picture and table are both numbered
+independently.}
+\label{tab:4}
+\begin{tabular}{@{}lll@{}}
+\hline
+Description 1 & Description 2 & Description \\
+\hline
+Row 1, Col 1 & Row 1, Col 2 & Row 1, Col 3 \\
+Row 2, Col 1 & Row 2, Col 2 & Row 2, Col 3 \\
+\hline
+\end{tabular}
+\end{minipage}
+\end{figure}
+
+
+\subsubsection{Small figures and tables}
+
+Single figures and tables less than 86mm wide should be typeset with their
+captions on the right side, bottoms aligned. The command \verb+\sidecaption+
+will achieve that for figures:
+\begin{verbatim}
+\begin{figure}[<float>]
+\sidecaption
+\includegraphics[<options>]{filename}%
+\caption{Caption of a small figure.}
+\label{fig:6}       % Give a unique label
+\end{figure}
+\end{verbatim}
+where $<$float$>$ (optional) is the known floating position parameter. See
+Fig. \ref{fig:sidecaption} for an example; the \LaTeX\ code for that is
+\begin{verbatim}
+\begin{figure}
+\sidecaption
+\includegraphics[width=50mm]{empty}%
+\caption{Caption of a small figure.}
+\label{fig:sidecaption}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}
+\sidecaption
+\includegraphics[width=50mm]{empty}%
+\caption{Caption of a small figure.}
+\label{fig:sidecaption}
+\end{figure}
+
+
+The \verb+\sidecaption+ macro expects just one \LaTeX{} box; so with more than
+one simple picture file or some other structure, that has to be encapsulated in
+a box structure:
+\begin{verbatim}
+\begin{figure}[<float>]
+\sidecaption
+\begin{minipage}{<boxwidth>}
+...
+\end{minipage}%
+\caption{Caption of ... .}
+\label{fig:X}       % Give a unique label
+\end{figure}
+\end{verbatim}
+where $<$boxwidth$>$ is the width of the box that the \verb+\sidecaption+ macro
+gets as argument.
+
+\begin{figure}
+\sidecaption
+\begin{minipage}[b]{60mm}
+\begin{minipage}[b]{33mm}%
+\includegraphics[width=\linewidth,height=10mm]{empty}\\[3mm]%
+\includegraphics[width=\linewidth,height=15mm]{empty}
+\end{minipage}%
+\hfill%
+\begin{minipage}[b]{24mm}%
+\includegraphics[width=\linewidth,height=25mm]{empty}
+\end{minipage}%
+\end{minipage}%
+\caption{Caption of a \emph{complicated} small figure.}
+\label{fig:couple}
+\end{figure}
+
+Note that virtually \emph{anything} could be typeset inside that box.
+For example, in Fig.\,\ref{fig:couple} a couple of small items are assembled to
+one picture; here is the \LaTeX\ code for that:
+\begin{verbatim}
+\begin{figure}
+\sidecaption
+\begin{minipage}[b]{60mm}
+\begin{minipage}[b]{33mm}%
+\includegraphics[width=\linewidth,height=10mm]{empty}\\[3mm]%
+\includegraphics[width=\linewidth,height=15mm]{empty}
+\end{minipage}%
+\hfill%
+\begin{minipage}[b]{24mm}%
+\includegraphics[width=\linewidth,height=25mm]{empty}
+\end{minipage}%
+\end{minipage}%
+\caption{Caption of a \emph{complicated} small figure.}
+\label{fig:couple}
+\end{figure}
+\end{verbatim}
+Note the (optional) \verb+[b]+ parameter which sets the base lines of the
+minipages to their lower limits, so the outermost one positions exactly at the
+correct height in respect to the side caption.
+
+For tables \verb+\tabsidecaption+ has to be used instead:
+\begin{verbatim}
+\begin{table}[<float>]
+\tabsidecaption
+\begin{tabular}{@{}lll@{}}
+\hline
+Description 1 & Description 2 & Description \\
+\hline
+Row 1, Col 1 & Row 1, Col 2 & Row 1, Col 3 \\
+Row 2, Col 1 & Row 2, Col 2 & Row 2, Col 3 \\
+\hline
+\end{tabular}
+\caption{Caption of a small table.}
+\label{tab:sidecaption}
+\end{table}
+\end{verbatim}
+Note that for technical reasons the \verb+\caption+ command has to be placed
+right \emph{after} the table when using this construct. See
+Table~\ref{tab:sidecaption} for the result of the \LaTeX\ code fragment above.
+
+\begin{table}[<float>]
+\tabsidecaption
+\begin{tabular}{@{}lll@{}}
+\hline
+Description 1 & Description 2 & Description \\
+\hline
+Row 1, Col 1 & Row 1, Col 2 & Row 1, Col 3 \\
+Row 2, Col 1 & Row 2, Col 2 & Row 2, Col 3 \\
+\hline
+\end{tabular}
+\caption{Caption of a small table.}
+\label{tab:sidecaption}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Test of math environments}
+Equations are always left-aligned. Therefore the option {fleqn} is used for the
+documentclass command by default. Note that {fleqn} does not work with
+unnumbered displayed equations written as \verb+$$ Ax =b $$+, so please use
+\verb+\[ Ax=b \]+ or an \texttt{equation*} or \texttt{gather*} environment
+instead.
+
+By default the equations are consecutively numbered. This may be changed by
+putting the following command inside the preamble
+\begin{center}
+  \verb+\numberwithin{equation}{section}+
+\end{center}
+
+The latex math display environment \verb+\[+\ldots\verb+\]+
+\[
+  \sum_{i=1}^{\infty} \frac{1}{i^2}
+\]
+
+An equation environment:
+\begin{equation}
+  \label{eq:eq}
+  \sum_{i=1}^{\infty} \frac{1}{i^2}
+\end{equation}
+For more mathematical commands and environments please refer to the
+document \texttt{*-tma.tex} and the documentation of the \AmS{} classes.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Some predefined theorem like environments}
+Some predefined theorem like environments may be used by loading the package
+\texttt{w-thm.sty}. This package will load by itself the package
+\texttt{amsthm.sty}. So it will be easy to define new theorem- and
+definition-like environments. For further details refer to the documentation of
+the \texttt{amsthm.sty} package.
+\begin{vchtable}[h]
+  \vchcaption{Some predefined theorem like environments.}
+\begin{tabular}{@{}lll@{}}
+\hline
+  environment            & caption     & theoremstyle  \\
+\hline
+  thm, theorem           & Theorem     & theorem  \\
+  prop, proposition      & Proposition & theorem  \\
+  lem, lemma             & Lemma       & theorem  \\
+  cor, corollary         & Corollary   & theorem  \\
+  axiom                  & Axiom       & theorem  \\
+  defs, defn, definition & Definition  & definition  \\
+  example                & Example     & definition  \\
+  rem, remark            & Remark      & definition  \\
+  notation               & Notation    & definition  \\
+\hline
+\end{tabular}
+  \label{tab:thm}
+\end{vchtable}
+\begin{theorem}
+  This is a theorem.
+\end{theorem}
+\begin{thm}
+  Another theorem.
+\end{thm}
+\begin{proof}
+  This is a proof.
+\end{proof}
+\begin{definition}
+  This is a definition.
+\end{definition}
+\begin{proposition}
+  This is a proposition.
+\end{proposition}
+\begin{lemma}
+  This is a lemma.
+\end{lemma}
+\begin{corollary}
+  This is a corollary.
+\end{corollary}
+\begin{example}
+  This is an example.
+\end{example}
+\begin{remark}
+  This is a remark.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Definition of new theorem like environments}
+Because \texttt{w-thm.sty} uses \texttt{amsthm.sty} the definition of new theorem like
+environments will be done in the same manner as in the amsthm package.
+The definition of
+\begin{verbatim}
+\theoremstyle{plain}
+\newtheorem{criterion}{Criterion}
+\theoremstyle{definition}
+\newtheorem{condition}[theorem]{Condition}
+\end{verbatim}
+inside the preamble of the document will give the following envirenments.
+\begin{criterion}
+  This is a Criterion.
+\end{criterion}
+\begin{condition}
+  This is a Condition.
+\end{condition}
+
+If the name of a predefined environment has to be changed it can be done
+by e.g. typing
+\begin{center}
+\verb+\renewcommand{\definitionname}{Definitions}+
+\end{center}
+after the \verb+\begin{document}+ command.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Change marks}
+
+Please use for changes requested by the referee the following colour change option:
+\begin{changed}
+  This is a text snippet marked as \emph{changed}. 
+  This is
+  done by enclosing it in an environment called \verb+changed+. Please note
+  that in certain circumstances there might be small side effects such
+  as make up deviations or additional blanks.
+\end{changed}
+
+
+
+\begin{acknowledgement}
+  An acknowledgement may be placed at the end of the~article.
+\end{acknowledgement}
+
+
+\def\bstname{mlq}
+\section*{Making bibliographies using Bib\TeX{} and \bstname.bst}
+
+
+At the end of this file you see an example bibliography which
+represents the journal’s reference
+style\cite{bib1,bib2,bib3,bib4,bib5,bib6}. Please format your real
+bibliography accordingly.
+
+Optionally, you may generate your bibliography using Bib\TeX{}, with the
+bib-style-file pss.bst from the template package in your \LaTeX{} search
+path. To this end, replace the example database-file \texttt{\jobname.bib} with
+your own existing one, or alternatively use it as a template for
+generating your new database. The following code in your manuscript
+source file enables Bib\TeX{}-functionality:
+% 
+\begin{quote}
+\texttt{\textbackslash{}bibliographystyle\{\bstname\}}\\
+\texttt{\textbackslash{}bibliography\{<}\emph{database-filename}\texttt{>\}}
+\end{quote}
+% 
+You then need to run your manuscript source file through Bib\TeX{} using
+the command 
+% 
+\begin{quote}
+\mbox{\texttt{bibtex <}\emph{filename}\texttt{>}}
+\end{quote}
+% 
+(most \TeX{} frontends have a shortcut for this) and afterwards
+through \LaTeX{} twice, in order to get the correct label numbering.
+
+\paragraph{Important:} Before
+sending your manuscript source file to the publisher, remember to
+transfer the actual, fully formatted bibliography contained in the
+Bib\TeX{}-generated file \mbox{\texttt{<}\emph{filename}\texttt{>.bbl}}
+to your manuscript source~file.
+
+
+% Use this code if you wish to generate your bibliography with BibTeX;
+% please replace first the string "demo" below with the name(s) of
+% the BibTeX data base(s) you want to use.
+% The resulting bibliography-output (the contents of the .bbl file)
+% must be pasted into this file before submission.
+% 
+% \bibliographystyle{mlq}
+% \bibliography{demo}
+% 
+% Replace the following example bibliography with your references
+% before submission:
+\begin{thebibliography}{[1]}
+  
+  \bibitem{bib1}% 
+  F.\,M. Firstauthorfamilyname, F.\,M. Secondauthorfamilyname, and
+  C.~Lastauthorfamilyname,
+  The title of the article,
+  Abbreviatedjournalname \textbf{volume}, page (year).
+  
+  \bibitem{bib2}% 
+  F.~Examplename and  I.\,E. Anotherauthorname,
+  The title of the article,
+  phys. stat. sol. (a) \textbf{1}, 111 (2050).
+  
+  \bibitem{bib3}% 
+  A.~Firstauthorname,  B.~Secondauthorname,  and
+  C.~Thirdauthorname,
+  Here Goes the Title of the Book (Publisher, City, year), p.\,111.
+  
+  \bibitem{bib4}% 
+  A.~Firsteditorname,  B.~Secondeditorname,  and
+  C.~Thirdeditorname (eds.),
+  Here Goes the Title of the Edited Book (Wiley-VCH, Berlin, 2050), p.\,111.
+  
+  \bibitem{bib5}% 
+  D.~Contributorname,
+  in: The Title of the Book, edited by The Name of the Editors, Followed by
+  the Title of the Series of Books (Publisher, City, year), chap.~1.
+  
+  \bibitem{bib6}% 
+  A.~Lastbutnotleastname,
+  Proceedings 1st Dummy Conference on Citation Formatting, City,
+  Country, Part A (Publisher, City, year),  pp.\,1--11.
+  
+\end{thebibliography}
+\end{document}

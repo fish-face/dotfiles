@@ -1,0 +1,125 @@
+%%
+%% This is file `mlq-stpl.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% template.dtx  (with options: `mlq,small')
+%% 
+%% $Id: template.dtx,v 1.61 2003/09/16 00:30:21 uwe Exp $
+%% ====================================================================
+\documentclass[mlq,fleqn]{w-art}
+\usepackage{times}
+\usepackage{w-thm}
+%% By default the equations are consecutively numbered. This may be changed by
+%% the following command.
+%% \numberwithin{equation}{section}
+%%
+%%
+%% The usage of multiple languages is possible.
+%% \usepackage{ngerman}% or
+%% \usepackage[english,ngerman]{babel}
+%% \usepackage[english,french]{babel}
+\usepackage[]{graphicx}
+\begin{document}
+%%    The information for the title page will be placed between
+%%    \begin{document} and \maketitle. The order of most entries
+%%    is determined by the class file and can not be changed by
+%%    rearranging them. The maketitle command follows after the
+%%    abstract.
+%%
+%%    Most of the following commands will be completed by the publisher.
+%%
+%%    The copyrightyear is defined in the .clo file as the first argument
+%%    of the copyrightinfo command. If the copyrightyear differs from that
+%%    value it might be adjusted by the following definition:
+%%
+%% \renewcommand{\copyrightyear}{2003}% uncomment to change the copyrightyear.
+%%
+\DOIsuffix{malq.theDOIsuffix}
+%%
+%% issueinfo for header and copyright line
+\Volume{49}
+\Issue{49}
+\Month{01}
+\Year{2003}
+%%
+%%    First and last pagenumber of the article. If the option
+%%    'autolastpage' is set (default) the second argument may be left empty.
+\pagespan{3}{}
+%%
+%%    Dates will be filled in by the publisher. The 'reviseddate' and
+%%    'dateposted' (Published online) entry may be left empty.
+\Receiveddate{15 November 2003}
+\Reviseddate{30 November 2003}
+\Accepteddate{2 December 2003}
+\Dateposted{3 December 2003}
+%%
+\keywords{List, of, comma, separated, keywords.}
+\subjclass[msc2010]{04A25}
+
+%% \pretitle{Editor's Choice}
+
+%% We have a short and a long form for the title. The short form
+%% (optional argument) goes into the running head.
+
+\title[Short Title]{Long title}
+
+%% Please do not enter footnotes or \inst{}-notes into the optional
+%% argument of the author command. The optional argument will go into
+%% the header.  If there is only one address the marker \inst{x} may be
+%% omitted.
+
+%% Information for the first author.
+\author[Sh. First Author]{L. First Author\footnote{Corresponding
+     author: e-mail: {\sf x.y@xxx.yyy.zz}, Phone: +00\,999\,999\,999,
+     Fax: +00\,999\,999\,999}\inst{1}} \address[\inst{1}]{First address}
+%%
+%%    Information for the second author
+\author[Sh. Second Author]{L. Second Author\footnote{Second author footnote.}\inst{1,2}}
+\address[\inst{2}]{Second address}
+%%
+%%    Information for the third author
+\author[Sh. Third Author]{L. Third Author\footnote{Third author footnote.}\inst{2}}
+%%
+%%    \dedicatory{This is a dedicatory.}
+\begin{abstract}
+\end{abstract}
+%% maketitle must follow the abstract.
+\maketitle                   % Produces the title.
+
+%% If there is not enough space inside the running head
+%% for all authors including the title you may provide
+%% the leftmark in one of the following three forms:
+
+%% \renewcommand{\leftmark}
+%% {First Author: A Short Title}
+
+%% \renewcommand{\leftmark}
+%% {First Author and Second Author: A Short Title}
+
+%% \renewcommand{\leftmark}
+%% {First Author et al.: A Short Title}
+
+%% \tableofcontents  % Produces the table of contents.
+\section{First section}
+\subsection{First subsection}
+
+
+
+
+\begin{acknowledgement}
+  An acknowledgement may be placed at the end of the article.
+\end{acknowledgement}
+
+The style of the following references should be used in all documents.
+
+\begin{thebibliography}{10}
+\bibitem{aa} xxx.
+\end{thebibliography}
+
+\end{document}               % End of document.
+
+\endinput
+%%
+%% End of file `mlq-stpl.tex'.

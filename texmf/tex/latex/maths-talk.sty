@@ -1,0 +1,80 @@
+\ProvidesPackage{maths-talk}  % this style was created by Sebastian B. Simonsen for CIC
+
+\usepackage{maths-generic}
+\usepackage{letltxmacro}
+
+%%%
+
+\usepackage{calc}
+%\usepackage{helvet}
+%\usepackage{lmodern}
+\usepackage{eulervm}
+%\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+
+\newif\iftalk@header
+\talk@headerfalse
+
+\DeclareOption{header}{
+	\talk@headertrue
+}
+
+\ProcessOptions\relax
+
+\mode<presentation>
+\iftalk@header
+	\usetheme{Boadilla}
+\else
+	\usetheme{CambridgeUS}
+\fi
+\usefonttheme[onlymath]{serif}
+\usecolortheme{seahorse}
+\usecolortheme{rose}
+\setbeamertemplate{items}[triangle]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{section in toc}[circle]
+\setbeamertemplate{subsection in toc}[circle]
+\beamertemplatenavigationsymbolsempty
+\newlength{\framenumwidth}
+\newlength{\datelength}
+\setlength{\framenumwidth}{.10\paperwidth}
+
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.3333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor\expandafter\beamer@ifempty\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=1\datelength,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=1\framenumwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\newlength{\myitemsep}
+\setlength{\myitemsep}{10pt plus 6pt minus 8pt}
+
+\g@addto@macro\beamer@lastminutepatches{
+	\setlength{\datelength}{.3333\paperwidth-1\framenumwidth}
+	\let\old@thm\@thm%
+	\def\@thm{\setlength{\myitemsep}{3pt}\old@thm}%
+	\setlength\parskip{8pt plus 8pt minus 6pt}%
+	\let\olditemize\itemize%
+	\def\itemize{%
+		\@ifnextchar[{\my@itemize@}{\myitemize}%
+	}
+	\def\my@itemize@[{%
+		\@ifnextchar<{\my@itemize@@}{\myitemize[}%
+	}
+	\def\my@itemize@@<#1>]{\myitemize[<#1>]}
+	\newenvironment{myitemize}[1][]{\olditemize[#1]\addtolength{\parskip}{\myitemsep}}{\enditemize}%
+	\let\oldenumerate\enumerate%
+	\renewcommand\enumerate{\oldenumerate\addtolength{\parskip}{\myitemsep}}%
+}
