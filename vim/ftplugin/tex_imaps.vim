@@ -51,6 +51,9 @@ if !exists('s:doneMappings')
 	call IMAP (g:Tex_Leader.'2', '\sqrt{<++>}', "tex")
 	call IMAP (g:Tex_Leader.'|', '\Big|', "tex")
 	call IMAP (g:Tex_Leader.'I', "\\int_{<++>}^{}", 'tex')
+	" Custom Mappings
+	call IMAP (g:Tex_Leader.'A', "\\forall", 'tex')
+	call IMAP (g:Tex_Leader.'E', "\\exists", 'tex')
 	" }}}
 	" Greek Letters {{{
 	call IMAP(g:Tex_Leader.'a', '\alpha', 'tex')

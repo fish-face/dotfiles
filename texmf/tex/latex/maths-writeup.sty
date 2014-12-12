@@ -5,6 +5,8 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{thm-restate}
 
 \author{Chris Le Sueur}
 
@@ -12,31 +14,55 @@
 
 %\theoremstyle{plain}
 
-\newtheorem{thm}{Theorem}
-\newtheorem*{thm*}{Theorem}
-\newtheorem{lem}[thm]{Lemma}
-\newtheorem{cor}[thm]{Corollary}
-\newtheorem{prop}[thm]{Proposition}
-\newtheorem{fact}[thm]{Fact}
-\newtheorem*{fact*}{Fact}
-\newtheorem{claim}{Claim}
-\newtheorem*{claim*}{Claim}
+%\newtheorem{thm}{Theorem}
+%\newtheorem*{thm*}{Theorem}
+%\newtheorem{lem}[thm]{Lemma}
+%\newtheorem{cor}[thm]{Corollary}
+%\newtheorem{prop}[thm]{Proposition}
+%\newtheorem{fact}[thm]{Fact}
+%\newtheorem*{fact*}{Fact}
+%\newtheorem{claim}{Claim}
+%\newtheorem*{claim*}{Claim}
+%
+%\theoremstyle{definition}
+%
+%\newtheorem{dfn}[thm]{Definition}
+%\newtheorem*{dfn*}{Definition}
+%
+%\numberwithin{thm}{section}
+%
+%\theoremstyle{remark}
+%
+%\newtheorem*{rem}{Remark}
+%\numberwithin{claim}{thm}
+%\renewcommand{\theclaim}{\arabic{claim}}
 
-\theoremstyle{definition}
-
-\newtheorem{dfn}[thm]{Definition}
-\newtheorem*{dfn*}{Definition}
-
-\numberwithin{thm}{section}
-
-\theoremstyle{remark}
-
-\newtheorem*{rem}{Remark}
-\numberwithin{claim}{thm}
+\declaretheorem[name=Theorem,within=section]{thm}
+\declaretheorem[numbered=no,name=Theorem]{thm*}
+\declaretheorem[name=Lemma,sibling=thm]{lem}
+\declaretheorem[name=Corollary,sibling=thm]{cor}
+\declaretheorem[name=Proposition,sibling=thm]{prop}
+\declaretheorem[name=Fact,sibling=thm]{fact}
+\declaretheorem[name=Fact,numbered=no]{fact*}
+\declaretheorem[name=Claim,within=thm]{claim}
+\declaretheorem[name=Claim,numbered=no]{claim*}
 \renewcommand{\theclaim}{\arabic{claim}}
+\renewcommand{\thelem}{\thethm}
+\renewcommand{\thecor}{\thethm}
+\renewcommand{\theprop}{\thethm}
+\renewcommand{\thefact}{\thethm}
+
+\declaretheorem[name=Definition,style=definition,sibling=thm]{dfn}
+\declaretheorem[name=Definition,style=definition,numbered=no]{dfn*}
+\renewcommand{\thedfn}{\thethm}
+
+\declaretheorem[name=Remark,style=remark,numbered=no]{rem}
 
 \newcommand{\inputbelow}[1]{
-	
+	\let\oldbibliography\bibliography
+	\def\bibliography##1{\relax}
+	\input{#1}
+	\let\bibliography\oldbibliography
 }
 
 \newcommand{\inputbelowsection}[1]{%
