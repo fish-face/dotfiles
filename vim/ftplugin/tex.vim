@@ -140,7 +140,7 @@ nmap <Leader>f :call SyncTexForward()<cr>
 
 augroup AUTOSAVE_ON_IDLE
 	au!
-	au CursorHold,CursorHoldI *.tex nested update
+	au CursorHold,CursorHoldI buffer nested update
 augroup END
 set updatetime=500
 
