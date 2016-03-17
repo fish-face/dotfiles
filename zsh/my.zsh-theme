@@ -86,7 +86,7 @@ truncate_wd () {
 	local wd_startlen=$3
 	local wd_endlen=$(( $wd_maxlen - $wd_startlen ))
 
-	if [ ${#wd} -gt $wd_maxlen ]; then
+	if [ ${#wd} -gt $(( $wd_maxlen + 1 )) ]; then
 		local wdoffset=$(( ${#wd} - $wd_endlen ))
 		wd="${wd:0:$wd_startlen}…${wd:$wdoffset:$wd_endlen}"
 	fi
@@ -106,7 +106,7 @@ fi
 if [[ -n "$SSH_CLIENT" ]]; then
 	USERHOST="$USERHOST%{$reset_color%}@%{$fg_bold[red]%}%m"
 else
-	USERHOST="$USERHOST%{$reset_color%}@%m"
+	USERHOST="$USERHOST%{$reset_color%}@%F{green}%m%f"
 fi
 LIBERTY="$LIBERTY%{$reset_color%}"
 
@@ -130,23 +130,23 @@ else
 	VENV=''
 fi
 
-LEFT="%{$bg[gray]%}$USERHOST $WD"
-RIGHT="$VENV %* "
+LEFT="$USERHOST $WD"
+RIGHT="%{$reset_color%}$VENV %* "
 
-SHORTLEFT="%{$bg[gray]%}$USERHOST $SHORTWD"
-SHORTRIGHT="[%*]"
+SHORTLEFT="$USERHOST $SHORTWD"
+SHORTRIGHT="%{$reset_color%} %* "
 
 setopt prompt_subst
 SPACE='$(get_space $LEFT $RIGHT)'
 PROMPT="$LEFT$SPACE$RIGHT
- » $LIBERTY "
+ %{$fg_bold[white]%}»%f $LIBERTY "
 RPROMPT='$(nvm_prompt_info) $(vcs_info && echo $vcs_info_msg_0_)'
 
 del-prompt-accept-line() {
 	OLD_PROMPT="$PROMPT"
 	OLD_RPROMPT="$RPROMPT"
-	PROMPT="$SHORTLEFT » "
-	RPROMPT="$RIGHT"
+	PROMPT="$SHORTLEFT »%{$fg_bold[white]%} "
+	RPROMPT="$SHORTRIGHT"
 	zle reset-prompt
 	PROMPT="$OLD_PROMPT"
 	RPROMPT="$OLD_RPROMPT"

@@ -43,7 +43,7 @@ use_zsh() {
 		zsh
 	fi
 	echo "Re-sourcing .zshrc"
-	source "$HOME/.zshrc"
+	zsh "$HOME/.zshrc"
 }
 
 cd "$HOME"
