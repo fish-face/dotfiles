@@ -44,7 +44,6 @@ set incsearch
 set nohlsearch
 set hidden
 set switchbuf=usetab,newtab
-set spell
 set foldopen-=block
 
 " Remember position in file
