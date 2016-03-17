@@ -1,15 +1,31 @@
 # Set up the prompt
 
-autoload -Uz promptinit
-promptinit
-prompt adam1
-
 setopt histignorealldups sharehistory
 
 # Custom path
 if [ -d "$home/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
 fi
+
+### Load and configure antigen
+#
+source ~/.antigen.zsh
+
+antigen use oh-my-zsh
+antigen bundle virtualenv
+antigen bundle django
+antigen bundle debian
+antigen bundle mercurial
+#antigen bundle tonyseek/oh-my-zsh-virtualenv-prompt virtualenv-prompt.plugin.zsh
+#antigen bundle git
+#antigen bundle gitfast
+antigen bundle git-prompt
+#antigen theme agnoster
+#antigen theme tonyseek/oh-my-zsh-seeker-theme seeker
+
+antigen apply
+
+source "$HOME/.zsh/my.zsh-theme"
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
@@ -24,6 +40,24 @@ _my_extended_wordchars_slash="${my_extended_wordchars}/"
 function _is_quoted(){
  test "${BUFFER[$CURSOR-1,CURSOR-1]}" = "\\"
 }
+
+#export VIRTUAL_ENV_DISABLE_PROMPT=1
+#
+#ZSH_THEME_VIRTUAL_ENV_PROMPT_PREFIX="("
+#ZSH_THEME_VIRTUAL_ENV_PROMPT_SUFFIX=")"
+#
+#function virtualenv_prompt_info() {
+#    if [ -n "$VIRTUAL_ENV" ]; then
+#        if [ -f "$VIRTUAL_ENV/__name__" ]; then
+#            local name=`cat $VIRTUAL_ENV/__name__`
+#        elif [ `basename $VIRTUAL_ENV` = "__" ]; then
+#            local name=$(basename $(dirname $VIRTUAL_ENV))
+#        else
+#            local name=$(basename $VIRTUAL_ENV)
+#        fi
+#        echo "$ZSH_THEME_VIRTUAL_ENV_PROMPT_PREFIX$name$ZSH_THEME_VIRTUAL_ENV_PROMPT_SUFFIX"
+#    fi
+#}
 
 _unquote-backward-delete-word(){
     while  _is_quoted
@@ -130,12 +164,42 @@ HISTFILE=~/.zsh_history
 
 alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
+alias du='du -hc --max-depth=1'
 
 # Enable intelligent command-not-found handling
 
 if [[ -s '/etc/zsh_command_not_found' ]]; then
 	source '/etc/zsh_command_not_found'
 fi
+
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt AUTO_NAME_DIRS
+setopt PUSHD_SILENT
+
+cd-up() {
+	cd ..
+	zle reset-prompt
+}
+pop-dir() {
+	popd > /dev/null
+	zle reset-prompt
+}
+unpop-dir() {
+	cd -1 > /dev/null
+	zle reset-prompt
+}
+
+zle -N cd-up
+zle -N pop-dir
+zle -N unpop-dir
+
+# Meta-u to chdir to the parent directory
+bindkey '\eu' cd-up #'^Ucd ..; ls^M'
+
+# If AUTO_PUSHD is set, Meta-p pops the dir stack
+bindkey '\ep' pop-dir
+bindkey '\en' unpop-dir
 
 # Use modern completion system
 autoload -Uz compinit
