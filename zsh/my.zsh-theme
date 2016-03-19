@@ -81,7 +81,7 @@ bureau_git_prompt () {
 }
 
 truncate_wd () {
-	local wd=$1
+	local wd="$1"
 	local wd_maxlen=$2
 	local wd_startlen=$3
 	local wd_endlen=$(( $wd_maxlen - $wd_startlen ))
@@ -93,8 +93,8 @@ truncate_wd () {
 	echo $wd
 }
 
-WD='%{$fg_bold[yellow]%}$(truncate_wd `print -P %~` 50 10)%{$reset_color%}'
-SHORTWD='%{$fg_bold[white]%}$(truncate_wd `print -P %1~` 12 3)%{$reset_color%}'
+WD='%{$fg_bold[yellow]%}$(truncate_wd "`print -P %~`" 50 10)%{$reset_color%}'
+SHORTWD='%{$fg_bold[white]%}$(truncate_wd "`print -P %1~`" 12 3)%{$reset_color%}'
 
 if [[ $EUID -eq 0 ]]; then
   USERHOST="%{$fg_bold[red]%}%n"
