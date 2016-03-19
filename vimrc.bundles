@@ -1,0 +1,35 @@
+set nocompatible
+
+" Initialise vundle
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+let g:airline_powerline_fonts = 1
+
+" Set up vundle Bundles
+Bundle 'gmarik/vundle'
+Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-surround'
+"Bundle 'ervandew/supertab'
+"Bundle 'Lokaltog/powerline'
+Bundle 'bling/vim-airline'
+Bundle 'spiiph/vim-space'
+"Bundle 'coot/atp_vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'LaTeX-Box-Team/LaTeX-Box'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle 'honza/vim-snippets'
+Bundle 'kana/vim-textobj-user'
+"Bundle 'tmhedberg/SimpylFold'
+"Bundle "rygwdn/latexbox-rubber"
+Bundle 'davidhalter/jedi-vim'
+
+if filereadable(expand("~/.vimrc.bundles.local"))
+	source ~/.vimrc.bundles.local
+endif
+
+filetype on
