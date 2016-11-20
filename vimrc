@@ -21,6 +21,7 @@ set wildignore+=*.bbl,*.aux,*.blg,*.fls,*.pdf,*.fdb_latexmk,*.bbl,*.gz,*.out,*.t
 
 " GUI
 set guioptions=aegiL
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10,Bitstream\ Vera\ Sans\ Mono\ for\ Powerline\ 10,Bitstream\ Vera\ Sans\ 10
 " Status line
 set laststatus=2
 
@@ -44,7 +45,7 @@ set incsearch
 set nohlsearch
 set hidden
 set switchbuf=usetab,newtab
-set spell
+" set spell
 set foldopen-=block
 
 " Remember position in file
