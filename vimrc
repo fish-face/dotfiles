@@ -154,6 +154,18 @@ augroup Reload-Vimrc
 	autocmd BufWritePost $MYVIMRC source % | doautocmd ColorScheme .vimrc
 augroup END
 
+" Command to process file whenever it's changed
+function! CompileFunction(cmd)
+	let b:compile_cmd = a:cmd
+	augroup MyCompile
+		au!
+		au BufWritePost <buffer> execute 'silent !' . b:compile_cmd . ' ' . expand('%:p')
+	augroup END
+	" execute '!' . a:cmd . expand('%:p')
+	" execute '!' . a:cmd . ' ' . expand('%:p')
+endfunction
+command! -nargs=1 Compile call CompileFunction('<args>')
+
 " Handle existence of swap files semi-sanely {{{
 function! s:HandleRecover()
   echo system('diff - ' . shellescape(expand('%:p')), join(getline(1, '$'), "\n") . "\n")

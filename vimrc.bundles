@@ -6,6 +6,10 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = " "
 
 " Set up vundle Bundles
 Bundle 'gmarik/vundle'
@@ -27,6 +31,7 @@ Bundle 'kana/vim-textobj-user'
 "Bundle 'tmhedberg/SimpylFold'
 "Bundle "rygwdn/latexbox-rubber"
 Bundle 'davidhalter/jedi-vim'
+Bundle 'ctrlpvim/ctrlp.vim'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
 	source ~/.vimrc.bundles.local
