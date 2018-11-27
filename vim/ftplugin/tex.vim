@@ -132,7 +132,7 @@ map <buffer> <F2> :call Errors()<cr>
 "map <buffer> <F2> :LatexErrors<cr>
 
 function! SyncTexForward(...)
-	let execstr = "silent !okular --unique ".LatexBox_GetOutputFile().'\#' . "src:".line(".").expand("%:p:h")."/./".expand("%:t")." &> /dev/null &"
+	let execstr = "silent !okular --unique ".LatexBox_GetOutputFile().'\#' . "src:".line(".").expand("%:p:h")."/./".expand("%:t")." >& /dev/null &"
 	exec execstr
 	if a:0 > 0
 		echo execstr

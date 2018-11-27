@@ -24,6 +24,7 @@ set guioptions=aegiL
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10,Bitstream\ Vera\ Sans\ Mono\ for\ Powerline\ 10,Bitstream\ Vera\ Sans\ 10
 " Status line
 set laststatus=2
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10,Ubuntu\ Mono\ derivative\ Powerline\ 10,Droid\ Sans\ Mono,Ubuntu\ Mono
 
 " Formatting {{{
 set backspace=eol,start,indent
@@ -60,7 +61,9 @@ augroup END
 
 " Plugins {{{
 " Powerline is special
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" Make airline symbols work
+let g:airline_powerline_fonts = 1
 
 " Some settings for LaTeX-suite
 set shellslash
@@ -209,4 +212,12 @@ augroup END
 
 " LaTeX
 let g:tex_flavor = "latex"
+" }}}
+
+" Local changes {{{
+
+if filereadable(expand("~/.vimrc.local"))
+	source ~/.vimrc.local
+endif
+
 " }}}
