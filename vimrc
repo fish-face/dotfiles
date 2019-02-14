@@ -21,7 +21,9 @@ set wildignore+=*.bbl,*.aux,*.blg,*.fls,*.pdf,*.fdb_latexmk,*.bbl,*.gz,*.out,*.t
 
 " GUI
 set guioptions=aegiL
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10,Bitstream\ Vera\ Sans\ Mono\ for\ Powerline\ 10,Bitstream\ Vera\ Sans\ 10
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10,Ubuntu\ Mono\ derivative\ Powerline\ 10,Bitstream\ Vera\ Sans\ Mono\ for\ Powerline\ 10Droid\ Sans\ Mono,Ubuntu\ Mono
+" Status line
+set laststatus=2
 
 " Formatting {{{
 set backspace=eol,start,indent
@@ -220,4 +222,12 @@ augroup END
 
 " LaTeX
 let g:tex_flavor = "latex"
+" }}}
+
+" Local changes {{{
+
+if filereadable(expand("~/.vimrc.local"))
+	source ~/.vimrc.local
+endif
+
 " }}}
