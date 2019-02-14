@@ -1,6 +1,6 @@
 # Set up the prompt
 
-setopt histignorealldups sharehistory
+setopt histignorealldups
 
 # Custom path
 if [ -d "$home/bin" ] ; then

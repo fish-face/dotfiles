@@ -22,8 +22,6 @@ set wildignore+=*.bbl,*.aux,*.blg,*.fls,*.pdf,*.fdb_latexmk,*.bbl,*.gz,*.out,*.t
 " GUI
 set guioptions=aegiL
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10,Bitstream\ Vera\ Sans\ Mono\ for\ Powerline\ 10,Bitstream\ Vera\ Sans\ 10
-" Status line
-set laststatus=2
 
 " Formatting {{{
 set backspace=eol,start,indent
@@ -60,13 +58,15 @@ augroup END
 
 " Plugins {{{
 " Powerline is special
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 " Some settings for LaTeX-suite
 set shellslash
 
 " Don't let vim-space wreck select-mode
 let g:space_disable_select_mode = 1
+" Or cabbreviations
+let g:space_no_quickfix = 1
 
 " Enable folding in LaTeX before LaTeX-Box starts
 let g:LatexBox_Folding=1
@@ -139,6 +139,17 @@ nnoremap + <C-w>+
 nmap <cr> za
 
 map <c-n> :NERDTreeToggle<cr>
+" }}}
+
+" Commands {{{
+
+function! OpenInNewTab()
+	tabnew
+	browse e
+endfunction
+command! Tbe call OpenInNewTab()
+Alias tbe Tbe
+
 " }}}
 
 " Prevent the cursor moving when clicking the window to focus it.
