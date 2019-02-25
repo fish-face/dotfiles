@@ -16,6 +16,7 @@ antigen bundle virtualenv
 antigen bundle django
 antigen bundle debian
 antigen bundle mercurial
+antigen bundle zsh-users/zsh-syntax-highlighting
 #antigen bundle tonyseek/oh-my-zsh-virtualenv-prompt virtualenv-prompt.plugin.zsh
 #antigen bundle git
 #antigen bundle gitfast
@@ -89,7 +90,7 @@ _backward-delete-to-space() {
     _unquote-backward-delete-word
 }
 
-_backward-delete-to-/ () {
+_backward-delete-to-slash () {
     local WORDCHARS=${_my_extended_wordchars}
     zle .backward-kill-word
     _unquote-backward-delete-word
@@ -101,7 +102,7 @@ _forward-delete-to-space() {
     _unquote-forward-delete-word
 }
 
-_forward-delete-to-/ () {
+_forward-delete-to-slash () {
     local WORDCHARS=${_my_extended_wordchars}
     zle .kill-word
     _unquote-forward-delete-word
@@ -119,35 +120,35 @@ _forward-to-space() {
      _unquote-forward-word
 }
 
-_backward-to-/ () {
+_backward-to-slash () {
     local WORDCHARS=${_my_extended_wordchars}
     zle .backward-word
     _unquote-backward-word
 }
 
-_forward-to-/ () {
+_forward-to-slash () {
      local WORDCHARS=${_my_extended_wordchars}
      zle .forward-word
      _unquote-forward-word
 }
 
-zle -N _backward-delete-to-/
-zle -N _forward-delete-to-/
+zle -N _backward-delete-to-slash
+zle -N _forward-delete-to-slash
 zle -N _backward-delete-to-space
 zle -N _forward-delete-to-space
-zle -N _backward-to-/
-zle -N _forward-to-/
-bindkey '^w'      _backward-delete-to-/
+zle -N _backward-to-slash
+zle -N _forward-to-slash
+bindkey '^w'      _backward-delete-to-slash
 bindkey '^[^w'    _backward-delete-to-space
-bindkey "^[^[[D"  _backward-to-/
-bindkey "^[^[[C"  _forward-to-/
-bindkey "^[^B"    _backward-to-/
-bindkey "^[^F"    _forward-to-/
-bindkey "^[^?"    _backward-delete-to-/
-bindkey "^[^[[3~" _forward-delete-to-/
+bindkey "^[^[[D"  _backward-to-slash
+bindkey "^[^[[C"  _forward-to-slash
+bindkey "^[^B"    _backward-to-slash
+bindkey "^[^F"    _forward-to-slash
+bindkey "^[^?"    _backward-delete-to-slash
+bindkey "^[^[[3~" _forward-delete-to-slash
 
-bindkey "[1;5D" _backward-to-/
-bindkey "[1;5C" _forward-to-/
+bindkey "[1;5D" _backward-to-slash
+bindkey "[1;5C" _forward-to-slash
 
 bindkey "^U" undo
 
