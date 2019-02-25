@@ -100,24 +100,26 @@ function! MoveTexWord(motion, mode, count, ...)
 endfunction
 
 let g:LatexBox_viewer='okular'
-let g:LatexBox_quickfix=0
-let g:LatexBox_latexmk_async=0
+let g:LatexBox_quickfix=4
+let g:LatexBox_latexmk_async=1
 let g:LatexBox_latexmk_preview_continuously=1
 let g:LatexBox_fold_envs=0
-let g:LatexBox_latexmk_options="-pdflatex='pdflatex -synctex=1 \\%O \\%S'"
+"let g:LatexBox_latexmk_options="-pdflatex='pdflatex -synctex=1 \\%O \\%S'"
 "set makeprg=rubber-info\ %:t:r.log
 "set errorformat=%f:%l:\ %m
 "map <buffer> <F2> :silent !rubber-info %:t:r.log 2>&1 > %:t:r.errors &<cr>:redraw!<cr>:cfile %:t:r.errors<cr>
 
 function! Errors()
-	if exists("g:quickfix_is_open")
-		cclose
-	else
-		cfile %:t:r.log
-		let orig_win = winnr()
-		cwindow
-		exe orig_win . " :wincmd w"
-	endif
+	normal :LatexErrors<cr>
+	wincmd p
+	"if exists("g:quickfix_is_open")
+	"	cclose
+	"else
+	"	cfile %:t:r.log
+	"	let orig_win = winnr()
+	"	cwindow
+	"	exe orig_win . " :wincmd w"
+	"endif
 endfunction
 
 augroup QFixToggle
@@ -127,9 +129,10 @@ augroup QFixToggle
 augroup END
 
 map <buffer> <F2> :call Errors()<cr>
+"map <buffer> <F2> :LatexErrors<cr>
 
 function! SyncTexForward(...)
-	let execstr = "silent !okular --unique ".LatexBox_GetOutputFile().'\#' . "src:".line(".").expand("%:p:h")."/./".expand("%:t")." &> /dev/null &"
+	let execstr = "silent !okular --unique ".LatexBox_GetOutputFile().'\#' . "src:".line(".").expand("%:p:h")."/./".expand("%:t")." >& /dev/null &"
 	exec execstr
 	if a:0 > 0
 		echo execstr

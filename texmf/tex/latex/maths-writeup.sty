@@ -56,7 +56,12 @@
 \declaretheorem[name=Definition,style=definition,numbered=no]{dfn*}
 \renewcommand{\thedfn}{\thethm}
 
+\declaretheorem[name=Example,style=definition,sibling=thm]{eg}
+\declaretheorem[name=Example,style=definition,numbered=no]{eg*}
+\renewcommand{\theeg}{\thethm}
+
 \declaretheorem[name=Remark,style=remark,numbered=no]{rem}
+\declaretheorem[name=Example,style=definition,sibling=thm]{eg}
 
 \newcommand{\inputbelow}[1]{
 	\let\oldbibliography\bibliography

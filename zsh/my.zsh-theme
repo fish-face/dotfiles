@@ -1,4 +1,4 @@
-# oh-my-zsh Bureau Theme
+# oh-my-zsh Bureau Theme, modifications by Fish-Face
 
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' check-for-changes true
@@ -20,65 +20,14 @@ ZSH_THEME_NVM_PROMPT_SUFFIX=""
 
 ### Git [±master ▾●]
 
-ZSH_THEME_GIT_PROMPT_PREFIX="[%{$fg_bold[green]%}±%{$reset_color%}%{$fg_bold[white]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}]"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✓%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}▴%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[magenta]%}▾%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[green]%}●%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg_bold[yellow]%}●%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[red]%}●%{$reset_color%}"
-
-bureau_git_branch () {
-  ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-  ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
-  echo "${ref#refs/heads/}"
-}
-
-bureau_git_status () {
-  INDEX=$(command git status --porcelain -b 2> /dev/null)
-  STATUS=""
-  if $(echo "$INDEX" | grep '^[AMRD]. ' &> /dev/null); then
-    STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STAGED"
-  fi
-  if $(echo "$INDEX" | grep '^.[MTD] ' &> /dev/null); then
-    STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNSTAGED"
-  fi
-  if $(echo "$INDEX" | command grep -E '^\?\? ' &> /dev/null); then
-    STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNTRACKED"
-  fi
-  if $(echo "$INDEX" | grep '^UU ' &> /dev/null); then
-    STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNMERGED"
-  fi
-  if $(command git rev-parse --verify refs/stash >/dev/null 2>&1); then
-    STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STASHED"
-  fi
-  if $(echo "$INDEX" | grep '^## .*ahead' &> /dev/null); then
-    STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_AHEAD"
-  fi
-  if $(echo "$INDEX" | grep '^## .*behind' &> /dev/null); then
-    STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_BEHIND"
-  fi
-  if $(echo "$INDEX" | grep '^## .*diverged' &> /dev/null); then
-    STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_DIVERGED"
-  fi
-
-  echo $STATUS
-}
-
-bureau_git_prompt () {
-  local _branch=$(bureau_git_branch)
-  local _status=$(bureau_git_status)
-  local _result=""
-  if [[ "${_branch}x" != "x" ]]; then
-    _result="$ZSH_THEME_GIT_PROMPT_PREFIX$_branch"
-    if [[ "${_status}x" != "x" ]]; then
-      _result="$_result $_status"
-    fi
-    _result="$_result$ZSH_THEME_GIT_PROMPT_SUFFIX"
-  fi
-  echo $_result
-}
+ZSH_THEME_GIT_PROMPT_PREFIX="[%B%F{green}±%b%f%B%F{white}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%b%f]"
+ZSH_THEME_GIT_PROMPT_CLEAN="%B%F{green}✓%b%f"
+ZSH_THEME_GIT_PROMPT_AHEAD="%F{cyan}▴%b%f"
+ZSH_THEME_GIT_PROMPT_BEHIND="%F{magenta}▾%b%f"
+ZSH_THEME_GIT_PROMPT_STAGED="%B%F{green}●%b%f"
+ZSH_THEME_GIT_PROMPT_UNSTAGED="%B%F{yellow}●%b%f"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%B%F{red}●%b%f"
 
 truncate_wd () {
 	local wd="$1"
@@ -93,22 +42,22 @@ truncate_wd () {
 	echo $wd
 }
 
-WD='%{$fg_bold[yellow]%}$(truncate_wd "`print -P %~`" 50 10)%{$reset_color%}'
-SHORTWD='%{$fg_bold[white]%}$(truncate_wd "`print -P %1~`" 12 3)%{$reset_color%}'
+WD='%B%F{yellow}$(truncate_wd "`print -P %~`" 50 10)%b%f'
+SHORTWD='%B%F{white}$(truncate_wd "`print -P %1~`" 12 3)%b%f'
 
 if [[ $EUID -eq 0 ]]; then
-  USERHOST="%{$fg_bold[red]%}%n"
-  LIBERTY="%{$fg[red]%}#"
+  USERHOST="%B%F{red}%n"
+  LIBERTY="%B%F{red}#%b%f"
 else
-  USERHOST="%{$fg_bold[white]%}%n"
-  LIBERTY="%{$fg[green]%}$"
+  USERHOST="%B%F{white}%n"
+  LIBERTY="%F{green}$%f"
 fi
 if [[ -n "$SSH_CLIENT" ]]; then
-	USERHOST="$USERHOST%{$reset_color%}@%{$fg_bold[red]%}%m"
+	USERHOST="$USERHOST%b%f@%B%F{red}%m"
 else
-	USERHOST="$USERHOST%{$reset_color%}@%F{green}%m%f"
+	USERHOST="$USERHOST%b%f@%F{green}%m%f"
 fi
-LIBERTY="$LIBERTY%{$reset_color%}"
+LIBERTY="$LIBERTY%b%f"
 
 
 get_space () {
@@ -125,27 +74,27 @@ get_space () {
 
 if type "virtualenv_prompt_info" > /dev/null
 then
-	VENV='%{$fg[green]%}$(virtualenv_prompt_info)%{$reset_color%}'
+	VENV='%F{green}$(virtualenv_prompt_info)%b%f'
 else
 	VENV=''
 fi
 
 LEFT="$USERHOST $WD"
-RIGHT="%{$reset_color%}$VENV %* "
+RIGHT="%b%f$VENV %* "
 
 SHORTLEFT="$USERHOST $SHORTWD"
-SHORTRIGHT="%{$reset_color%} %* "
+SHORTRIGHT="%b%f %* "
 
 setopt prompt_subst
 SPACE='$(get_space $LEFT $RIGHT)'
 PROMPT="$LEFT$SPACE$RIGHT
- %{$fg_bold[white]%}»%f $LIBERTY "
-RPROMPT='$(nvm_prompt_info) $(vcs_info && echo $vcs_info_msg_0_)'
+ %B%F{white}»%f%b $LIBERTY "
+RPROMPT='$(vcs_info && echo $vcs_info_msg_0_)'
 
 del-prompt-accept-line() {
 	OLD_PROMPT="$PROMPT"
 	OLD_RPROMPT="$RPROMPT"
-	PROMPT="$SHORTLEFT »%{$fg_bold[white]%} "
+	PROMPT="$SHORTLEFT »%B%F{white}%b%f "
 	RPROMPT="$SHORTRIGHT"
 	zle reset-prompt
 	PROMPT="$OLD_PROMPT"
