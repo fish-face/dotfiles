@@ -150,7 +150,6 @@ function! OpenInNewTab()
 	browse e
 endfunction
 command! Tbe call OpenInNewTab()
-Alias tbe Tbe
 
 " }}}
 
