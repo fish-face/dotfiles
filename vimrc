@@ -109,8 +109,8 @@ nnoremap ; :
 " Sane yank
 nnoremap Y y$
 
-nnoremap L :tabn<cr>
-nnoremap H :tabp<cr>
+nnoremap L gt
+nnoremap H gT
 nmap ]q :cn<cr>zv
 nmap [q :cp<cr>zv
 nmap <C-p> gwap
