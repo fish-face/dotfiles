@@ -4,7 +4,7 @@ setopt histignorealldups
 
 # Custom path
 if [ -d "$home/bin" ] ; then
-    export PATH="$HOME/bin:$PATH"
+    export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 fi
 
 ### Load and configure antigen

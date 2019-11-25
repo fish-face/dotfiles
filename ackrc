@@ -1,3 +1,6 @@
 # Define i18n file types:
 --type-set
 i18n=.pot,.po
+# Extra ignores
+--ignore-dir=.pytest_cache/
+--ignore-dir=htmlcov/
