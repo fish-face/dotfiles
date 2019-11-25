@@ -15,6 +15,11 @@
 	aa = add --all
 	ap = add --patch
 	dc = diff --cached
+	arb = "!git log -g --grep-reflog \"checkout:\" --format=\"%gs\" | sed -E \"s/.*from .* to (.*)/\\1/\" | tail -n +2 ; git branch -r --format='%(refname:short)' | sed -E \"s:origin/::\""
+	all-recent-branches = "!git arb | awk '!x[$0]++'"
+	sb = "!git checkout $( git all-recent-branches | fzy )"
+	pu = push -u origin HEAD
+	pf = push --force-with-lease
 
 [color]
 	ui = auto
@@ -31,3 +36,5 @@
 	default = simple
 [rerere]
 	enabled = true
+[submodule]
+	recurse = true
