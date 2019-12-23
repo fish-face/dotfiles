@@ -113,7 +113,6 @@ nnoremap L gt
 nnoremap H gT
 nmap ]q :cn<cr>zv
 nmap [q :cp<cr>zv
-nmap <C-p> gwap
 imap <C-p> <Esc>gwapgi
 
 " Toggleable options
