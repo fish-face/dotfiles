@@ -20,16 +20,23 @@
 	sb = "!git checkout $( git all-recent-branches | fzy )"
 	pu = push -u origin HEAD
 	pf = push --force-with-lease
+	rbc = rebase --continue
+	fx = "!target=$( git log --oneline | fzy | awk '{ print $1; }' ) && git commit --fixup=${target} && GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash --autostash ${target}^"
+    cp = cherry-pick
 
 [color]
 	ui = auto
 
-[include]
-	path = .gitconfig.local
 [user]
 	email = c.m.lesueur@gmail.com
 	name = Chris Le Sueur
 
+[diff "zip"]
+	textconv = unzip -c -a
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false
 [core]
 	excludesfile = ~/.gitignore
 [push]
@@ -38,3 +45,7 @@
 	enabled = true
 [submodule]
 	recurse = true
+[include]
+	path = .gitconfig.local
+[merge]
+	conflicstyle = diff3
