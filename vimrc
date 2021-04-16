@@ -21,7 +21,7 @@ set wildignore+=*.bbl,*.aux,*.blg,*.fls,*.pdf,*.fdb_latexmk,*.bbl,*.gz,*.out,*.t
 
 " GUI
 set guioptions=aegiL
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 10,Ubuntu\ Mono\ derivative\ Powerline\ 10,Bitstream\ Vera\ Sans\ Mono\ for\ Powerline\ 10Droid\ Sans\ Mono,Ubuntu\ Mono
+set guifont=Droid\ Sans\ Mono\ 10
 " Status line
 set laststatus=2
 
@@ -69,9 +69,6 @@ set shellslash
 let g:space_disable_select_mode = 1
 " Or cabbreviations
 let g:space_no_quickfix = 1
-
-" Enable folding in LaTeX before LaTeX-Box starts
-let g:LatexBox_Folding=1
 
 " Colors
 let g:solarized_termcolors=16

@@ -1,5 +1,5 @@
-imap <buffer> [[ 		\begin{
-imap <buffer> ]]		<Plug>LatexCloseCurEnv
+"imap <buffer> [[ 		\begin{
+"imap <buffer> ]]		<Plug>LatexCloseCurEnv
 nmap <buffer> <F5>		<Plug>LatexChangeEnv
 vmap <buffer> <F7>		<Plug>LatexWrapSelection
 vmap <buffer> <S-F7>		<Plug>LatexEnvWrapSelection
@@ -104,6 +104,9 @@ let g:LatexBox_quickfix=4
 let g:LatexBox_latexmk_async=1
 let g:LatexBox_latexmk_preview_continuously=1
 let g:LatexBox_fold_envs=0
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
 "let g:LatexBox_latexmk_options="-pdflatex='pdflatex -synctex=1 \\%O \\%S'"
 "set makeprg=rubber-info\ %:t:r.log
 "set errorformat=%f:%l:\ %m

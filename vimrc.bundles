@@ -6,10 +6,10 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
 
 let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = " "
+"if !exists('g:airline_symbols')
+"	let g:airline_symbols = {}
+"endif
+"let g:airline_symbols.space = " "
 
 " Set up vundle Plugins
 Plugin 'gmarik/vundle'
@@ -21,7 +21,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'bling/vim-airline'
 ""Plugin 'coot/atp_vim'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
+"Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'lervag/vimtex'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
