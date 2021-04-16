@@ -21,7 +21,7 @@
 	pu = push -u origin HEAD
 	pf = push --force-with-lease
 	rbc = rebase --continue
-	fx = "!target=$( git log --oneline | fzy | awk '{ print $1; }' ) && git commit --fixup=${target} && GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash --autostash ${target}^"
+	fx = "!target=$( git log --oneline | fzy | awk '{ print $1; }' ) && git commit -n --fixup=${target} && GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash --autostash ${target}^"
     cp = cherry-pick
 
 [color]
@@ -48,4 +48,10 @@
 [include]
 	path = .gitconfig.local
 [merge]
-	conflicstyle = diff3
+	conflictstyle = diff3
+	tool = meld
+[pull]
+	ff = only
+[mergetool "meld"]
+	cmd = meld --auto-merge "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+	hideResolved = true
