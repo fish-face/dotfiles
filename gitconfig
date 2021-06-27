@@ -38,6 +38,7 @@
 [mergetool]
 	prompt = false
 [core]
+	editor = vim
 	excludesfile = ~/.gitignore
 [push]
 	default = simple
