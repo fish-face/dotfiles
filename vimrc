@@ -21,7 +21,7 @@ set wildignore+=*.bbl,*.aux,*.blg,*.fls,*.pdf,*.fdb_latexmk,*.bbl,*.gz,*.out,*.t
 
 " GUI
 set guioptions=aegiL
-set guifont=Droid\ Sans\ Mono\ 10
+set guifont=gvim\ font\ 10,Noto\ Mono\ 10,Droid\ Sans\ Mono\ 10
 " Status line
 set laststatus=2
 
