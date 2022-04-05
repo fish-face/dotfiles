@@ -74,7 +74,7 @@ get_space () {
 
 if type "virtualenv_prompt_info" > /dev/null
 then
-	VENV='%F{green}$(virtualenv_prompt_info)%b%f'
+	VENV='%F{green}$(virtualenv_prompt_info)${CONDA_DEFAULT_ENV}%b%f'
 else
 	VENV=''
 fi
