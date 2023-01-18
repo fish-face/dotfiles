@@ -30,7 +30,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'kana/vim-textobj-user'
 Plugin 'tmhedberg/SimpylFold'
 "Plugin 'rygwdn/latexbox-rubber'
-Plugin 'davidhalter/jedi-vim'
+"Plugin 'davidhalter/jedi-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-scripts/cmdalias.vim'
 Plugin 'spiiph/vim-space'
@@ -38,6 +38,7 @@ Plugin 'Konfekt/FastFold'
 Plugin 'kalekundert/vim-coiled-snake'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'zah/nim.vim'
+Plugin 'prabirshrestha/vim-lsp'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
 	source ~/.vimrc.bundles.local
