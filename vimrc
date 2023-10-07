@@ -21,7 +21,7 @@ set wildignore+=*.bbl,*.aux,*.blg,*.fls,*.pdf,*.fdb_latexmk,*.bbl,*.gz,*.out,*.t
 
 " GUI
 set guioptions=aegiL
-set guifont=gvim\ font\ 10,Noto\ Mono\ 10,Droid\ Sans\ Mono\ 10
+set guifont=Noto\ Sans\ Mono\ 10
 " Status line
 set laststatus=2
 
@@ -175,6 +175,22 @@ function! CompileFunction(cmd)
 	" execute '!' . a:cmd . ' ' . expand('%:p')
 endfunction
 command! -nargs=1 Compile call CompileFunction('<args>')
+
+function! MovePastBlank(motion)
+  execute 'normal! '.a:motion
+  let prev_pos = getpos('.')
+
+  while expand('<cword>') == ''
+    execute 'normal! '.a:motion
+
+    let current_pos = getpos('.')
+    if current_pos == prev_pos
+      return 
+    else
+      let prev_pos = current_pos
+    endif
+  endwhile
+endfunction
 
 " Handle existence of swap files semi-sanely {{{
 function! s:HandleRecover()
